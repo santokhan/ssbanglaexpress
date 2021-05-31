@@ -181,13 +181,19 @@ body {
     font-size: 2.5rem;
 }
 
+.slide-text-box{
+    position: relative;
+}
 .slide-text {
+    display: none;
     position: absolute;
     font-size: 3rem;
     font-weight: bold;
-    bottom: 10px;
+    top: 75%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000;
+    color: white;
 }
 
 /* Slider close */
