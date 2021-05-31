@@ -182,12 +182,12 @@ body {
 }
 
 .slide-text {
-    font-weight: bold;
-    font-size: 3rem;
     position: absolute;
-    top: 98%;
+    font-size: 3rem;
+    font-weight: bold;
+    bottom: 10px;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
 }
 
 /* Slider close */
