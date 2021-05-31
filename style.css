@@ -183,24 +183,14 @@ body {
 
 .slide-text {
     position: absolute;
-    left: 50%;
-    bottom: 2%;
-    transform: translateX(-50%);
-    font-size: 3vw;
-    font-weight: bold;
-}
-
-/* .slide-text {
-    position: absolute;
     font-size: 3rem;
     font-weight: bold;
     bottom: 10px;
     left: 50%;
     transform: translate(-50%);
-} */
+}
 
 /* Slider close */
-
 
 
 .parallax {
