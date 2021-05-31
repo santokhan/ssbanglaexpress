@@ -182,10 +182,10 @@ body {
 }
 
 .slide-text {
-    position: absolute;
-    font-size: 3rem;
     font-weight: bold;
-    bottom: 10px;
+    font-size: 3rem;
+    position: absolute;
+    top: 98%;
     left: 50%;
     transform: translate(-50%);
 }
