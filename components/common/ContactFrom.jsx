@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 
 const ContactForm = ({ className = "" }) => {
     return (
-        <div className={cn("py-12 lg:py-20 space-y-6 px-4 lg:p-8 max-w-2xl mx-auto", className)}>
+        <div className={cn("py-12 lg:py-20 soace-y-8 lg:space-y-12 px-4 lg:p-8 max-w-2xl mx-auto", className)}>
             <h2 className="text-4xl font-bold text-center mb-4">Get in touch</h2>
-            <form>
+            <form className="space-y-5">
                 <div className="flex flex-wrap lg:flex-nowrap gap-5">
-                    <div className="w-full mb-5">
+                    <div className="w-full">
                         <input
                             type="text"
                             id="firstName"
@@ -15,7 +15,7 @@ const ContactForm = ({ className = "" }) => {
                             required=""
                         />
                     </div>
-                    <div className="w-full mb-5">
+                    <div className="w-full">
                         <input
                             type="text"
                             id="lastName"
@@ -26,7 +26,7 @@ const ContactForm = ({ className = "" }) => {
                     </div>
                 </div>
                 <div className="flex flex-wrap lg:flex-nowrap gap-5">
-                    <div className="w-full mb-5">
+                    <div className="w-full">
                         <input
                             type="email"
                             id="email"
@@ -35,12 +35,12 @@ const ContactForm = ({ className = "" }) => {
                             required=""
                         />
                     </div>
-                    <div className="w-full mb-5">
+                    <div className="w-full">
                         <input
                             type="text"
                             id="phone"
                             className="bg-gray-100 text-gray-900 text-base rounded-lg focus:outline-none block w-full px-4 py-3"
-                            placeholder="+123 456 789"
+                            placeholder="+880 1711 327 764"
                             required=""
                         />
                     </div>

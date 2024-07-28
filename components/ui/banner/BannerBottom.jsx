@@ -1,3 +1,5 @@
+import Href from "@/components/common/Href"
+
 const BannerBottom = () => {
   return (
     <div className='container mx-auto px-4'>
@@ -6,9 +8,9 @@ const BannerBottom = () => {
           <h3 className='mb-1 max-w-xl text-3xl font-bold leading-tight'>Need help? Talk to our expert.</h3>
           <p>Talk to our experts or Browse through more properties.</p>
         </div>
-        <div className='flex gap-4'>
-          {/* <AnchorOutline href='/contact-us'>Contact Us</AnchorOutline> */}
-          {/* <AnchorSolid href='tel:+97142287788'>+97142287788</AnchorSolid> */}
+        <div className='flex items-center flex-wrap gap-4'>
+          <Href href='/contact'>Contact Us</Href>
+          <Href href='tel:+88001711327764' className="whitespace-nowrap">+880 1711 327 764</Href>
         </div>
       </div>
     </div>

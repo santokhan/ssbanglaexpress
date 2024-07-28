@@ -1,7 +1,5 @@
-import Image from "next/image";
+import Team from "@/components/common/Team";
 
-export default function Home() {
-  return (
-    <></>
-  );
+export default function Page() {
+  return <Team />;
 }

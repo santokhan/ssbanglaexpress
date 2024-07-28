@@ -1,62 +1,74 @@
 import { Call, Whatsapp } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
+import shahinImage from "@/assets/images/team/shahin.png";
+import shohelImage from "@/assets/images/team/shohel.png";
+import shohebImage from "@/assets/images/team/shoheb.png";
+import SectionTitle from "./SectionTitle";
 
 const Team = () => {
-  const items = [
+  const teamMembers = [
     {
-      imageUrl: "",
-      title: "sahar safi",
-      description: "Operation Director",
-      phone: "+971502097639",
-      whatsApp: "+971502097639",
-      email: "sahar@bsmproperty.ae",
+      imageUrl: shahinImage,
+      name: "Shahan Shah Kabir",
+      description: "Owner & Managing Director",
+      phone: "+8801711327764",
+      whatsApp: "+8801611327764",
+      email: "banglaexpress01@gmail.com",
     },
     {
-      imageUrl: "",
-      title: "gayathri girish",
-      description: "Sales Admin",
-      phone: "+971562280036",
-      whatsApp: "+971562280036",
-      email: "info@bsmproperty.ae",
+      imageUrl: shohelImage,
+      name: "Shohel Rana",
+      description: "Service Manager",
+      phone: "+8801711327764",
+      whatsApp: "+8801611327764",
+      email: "banglaexpress01@gmail.com",
     },
+    {
+      imageUrl: shohebImage,
+      name: "Al Nizam Shoheb",
+      description: "Data Analyst",
+      phone: "+8801711327764",
+      whatsApp: "+8801611327764",
+      email: "banglaexpress01@gmail.com",
+    }
   ];
 
   return (
     <section className="section">
-      <div className="flex flex-col items-center space-y-1">
-        <h2 className="text-2xl font-semibold">Our Exclusive Team</h2>
-        <p>
+      <div className="flex flex-col items-center space-y-1 max-w-2xl mx-auto">
+        <SectionTitle className="text-center">Our Exclusive <span className="text-rose-800">Team</span></SectionTitle>
+        <p className="text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
           saepe officiis voluptatibus similique suscipit
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-        {items.map((item, index) => (
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-10">
+        {teamMembers.map((member, index) => (
           <div key={index} className="w-full max-w-60 space-y-4 rounded-2xl">
             <Image
               width={400}
               height={400}
-              src={item.imageUrl}
+              src={member.imageUrl}
               alt="icon"
               className="w-full h-60 border object-cover rounded-2xl"
             />
             <div className="text-start">
-              <h4 className="font-semibold text-sm capitalize text-center mb-1">
-                {item.title}
+              <h4 className="font-semibold capitalize text-center mb-1">
+                {member.name}
               </h4>
-              <p className="text-gray-700 text-sm text-center capitalize">
-                {item.description}
+              <p className="text-gray-700 text-sm text-center capitalize mb-1">
+                {member.description}
               </p>
               <div className="flex items-center justify-center gap-4 py-2">
-                <Link href={`tel:${item.phone}`}>
+                <Link href={`tel:${member.phone}`} className="transition-all hover:text-rose-800">
                   <Call className="size-4" />
                 </Link>
-                <Link href={`https://wa.me/${item.whatsApp}`}>
+                <Link href={`https://wa.me/${member.whatsApp}`} className="transition-all hover:text-rose-800">
                   <Whatsapp className="size-4" />
                 </Link>
-                <Link href={`mailto:${item.email}`}>
+                <Link href={`mailto:${member.email}`} className="transition-all hover:text-rose-800">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

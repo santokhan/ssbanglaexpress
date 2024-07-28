@@ -5,8 +5,9 @@
 import Drawer from "rc-drawer";
 import { Suspense, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import NavList from "./NavList";
 import { CloseCircle } from "iconsax-react";
+import Social from "./footer/Social";
+import NavList from "./navbar/NavList";
 
 const MobileNavs = ({ transparent = false }) => {
   const [open, setOpen] = useState(false);
@@ -40,7 +41,7 @@ const MobileNavs = ({ transparent = false }) => {
         <Drawer
           open={open}
           onClose={toggleOpen}
-          className="w-[72vw] h-full z-[5] fixed right-0 top-0 bg-white p-6 border-l"
+          className="w-full h-full z-[5] fixed right-0 top-0 bg-white p-6 border-l"
         >
           <button
             type="button"
@@ -54,6 +55,9 @@ const MobileNavs = ({ transparent = false }) => {
               transparent={transparent}
               className={"flex-col items-start !text-2xl gap-3"}
             />
+          </div>
+          <div className="flex justify-center mt-12">
+            <Social />
           </div>
         </Drawer>
       )}
