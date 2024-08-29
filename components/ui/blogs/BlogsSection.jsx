@@ -9,16 +9,19 @@ const BlogsSection = async () => {
     const blogs = await res.json()
 
     return (
-        <section className="section">
-            <div className="max-w-2xl mx-auto px-4">
-                <SectionTitle className="text-center">Get The <span className="text-rose-800">Latest</span> Our News</SectionTitle>
-                <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos saepe officiis voluptatibus similique suscipit</p>
-            </div>
-            {blogs.length > 0 ? <Blogs blogs={blogs} /> : ""}
-            <div className="container mx-auto px-4 flex justify-center">
-                <Href href={"/blogs"}>Read more</Href>
-            </div>
-        </section>
+        blogs.length > 0 ?
+            <section className="section">
+                <div className="max-w-2xl mx-auto px-4">
+                    <SectionTitle className="text-center">Get The <span className="text-rose-800">Latest</span> Our News</SectionTitle>
+                    <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos saepe officiis voluptatibus similique suscipit</p>
+                </div>
+                <Blogs blogs={blogs} />
+                <div className="container mx-auto px-4 flex justify-center">
+                    <Href href={"/blogs"}>Read more</Href>
+                </div>
+            </section>
+            :
+            null
     );
 }
 
