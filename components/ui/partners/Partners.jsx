@@ -1,3 +1,4 @@
+import SectionTitle from "@/components/common/SectionTitle";
 import Image from "next/image";
 
 const Partners = () => {
@@ -20,3 +21,5 @@ const Partners = () => {
     </section>
   );
 };
+
+export default Partners;

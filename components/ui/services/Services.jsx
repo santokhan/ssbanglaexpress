@@ -1,3 +1,5 @@
+import SectionTitle from "@/components/common/SectionTitle"
+
 const Services=()=>{
     return(
         <section className="section">
@@ -8,3 +10,5 @@ const Services=()=>{
         </section>
     )
 }
+
+export default Services
