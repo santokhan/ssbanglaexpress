@@ -6,7 +6,7 @@ const Hero = () => {
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white !leading-[1.2]">
                         Trusted Transport Logistic Company
                     </h1>
-                    <p className="text-base sm:text-xl max-w-xl">With our commitment excellence dedication customer satisfaction, we're here streamline supply chain and drive your business.</p>
+                    <p className="text-base sm:text-xl max-w-xl">With our commitment excellence dedication customer satisfaction, we&apos;re here streamline supply chain and drive your business.</p>
                 </div>
             </section>
         </header>
