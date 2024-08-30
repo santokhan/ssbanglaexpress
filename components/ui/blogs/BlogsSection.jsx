@@ -5,8 +5,9 @@ import Blogs from "./Blogs"
 import Href from "@/components/common/Href"
 
 const BlogsSection = async () => {
-    const res = await fetch('http://localhost:3000/blogs.json')
-    const blogs = await res.json()
+    // const res = await fetch('http://localhost:3000/blogs.json')
+    // const blogs = await res.json()
+    const blogs = [1, 2, 3, 4, 5]
 
     return (
         blogs.length > 0 ?
