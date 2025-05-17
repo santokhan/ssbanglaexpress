@@ -70,6 +70,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -82,5 +83,16 @@
 @layer utilities {
   section.section {
     @apply py-16 lg:py-24 space-y-16;
+  }
+
+  input.default,
+  select.default,
+  textarea.default {
+    @apply mt-1 block w-full px-4 py-2.5 rounded-md border border-gray-300 shadow-sm focus:border-red-800 focus:outline-none;
+  }
+
+  button.default,
+  a.default {
+    @apply inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-700;
   }
 }
