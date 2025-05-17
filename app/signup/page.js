@@ -1,4 +1,48 @@
+'use client'
+
+import { useState } from "react"
+
 const Page = () => {
+    const [form, setForm] = useState({
+        name: '',
+        username: '',
+        email: '',
+        phone: '',
+        password: '',
+    })
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+        setForm({
+            ...form,
+            [name]: value,
+        })
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+
+        try {
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form),
+            })
+
+            const data = await response.json()
+
+            if (response.ok) {
+                // Handle successful signup, e.g., redirect to login page
+            } else {
+                // Handle signup error, e.g., display error message
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="min-h-svh flex flex-col items-center justify-evenly bg-gray-50 px-4">
             <div className="max-w-md w-full space-y-8 p-8 bg-white shadow-xl rounded-2xl">
@@ -9,7 +53,7 @@ const Page = () => {
                     </p>
                 </div>
 
-                <form className="mt-8 space-y-6">
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -60,19 +104,6 @@ const Page = () => {
                                 name="password"
                                 type="password"
                                 autoComplete="new-password"
-                                required
-                                className="default"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                                Confirm Password
-                            </label>
-                            <input
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                type="password"
                                 required
                                 className="default"
                             />

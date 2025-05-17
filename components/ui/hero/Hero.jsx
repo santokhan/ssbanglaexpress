@@ -11,7 +11,7 @@ const Hero = () => (
                     With our commitment excellence dedication customer satisfaction, we&apos;re here streamline supply chain and drive your business.
                 </p>
                 <div>
-                    <Link href="/rate-calculator" className="px-6 py-3 bg-white text-[#013644] font-semibold rounded-xl shadow-md hover:bg-gray-100 transition">
+                    <Link href="/rate-calculator" className="default !px-6">
                         Rate Calculator
                     </Link>
                 </div>
