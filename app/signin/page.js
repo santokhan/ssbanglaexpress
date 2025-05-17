@@ -1,4 +1,39 @@
+'use client'
+
+import { useState } from 'react'
+
 const Page = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            const API = process.env.NEXT_PUBLIC_API_URL
+
+            const response = await fetch(API + '/v1/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Something went wrong')
+            }
+
+            // ✅ handle success (redirect or show success message)
+            console.log('Login success:', data)
+        } catch (error) {
+            // ⚠️ handle error (show error message to the user)
+            console.error('Login failed:', error.message)
+        }
+    }
+
     return (
         <div className="min-h-svh flex flex-col items-center justify-evenly bg-gray-50 px-4">
             <div className="max-w-md w-full space-y-8 p-8 bg-white shadow-xl rounded-2xl">
@@ -8,7 +43,7 @@ const Page = () => {
                         Or <a href="/signup" className="text-red-600 hover:underline">create an account</a>
                     </p>
                 </div>
-                <form className="mt-8 space-y-6">
+                <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -21,6 +56,8 @@ const Page = () => {
                                 autoComplete="email"
                                 required
                                 className="default"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -34,6 +71,8 @@ const Page = () => {
                                 autoComplete="current-password"
                                 required
                                 className="default"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                     </div>
@@ -59,11 +98,11 @@ const Page = () => {
                     </div>
 
                     <div>
-                        <button className="default w-full">Sign In</button>
+                        <button type="submit" className="default w-full">Sign In</button>
                     </div>
                 </form>
             </div>
-            <div className=""></div>
+            <div></div>
         </div>
     )
 }

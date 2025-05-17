@@ -23,7 +23,9 @@ const Page = () => {
         e.preventDefault()
 
         try {
-            const response = await fetch('/api/auth/signup', {
+            const API = process.env.NEXT_PUBLIC_API_URL
+
+            const response = await fetch(API + "/v1/signin", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
