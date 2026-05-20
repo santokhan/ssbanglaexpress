@@ -1,8 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import shahinImage from "@/assets/images/team/shahin.png";
-import shohelImage from "@/assets/images/team/shohel.png";
-import shohebImage from "@/assets/images/team/shoheb.png";
 import SectionTitle from "./SectionTitle";
 
 const Team = () => {
@@ -16,7 +13,7 @@ const Team = () => {
       email: "banglaexpress01@gmail.com",
     },
     {
-      imageUrl: shohelImage,
+      imageUrl: "/assets/images/placeholder.webp",
       name: "Shohel Rana",
       description: "Service Manager",
       phone: "+8801711327764",
@@ -24,7 +21,7 @@ const Team = () => {
       email: "banglaexpress01@gmail.com",
     },
     {
-      imageUrl: shohebImage,
+      imageUrl: "/assets/images/placeholder.webp",
       name: "Al Nizam Shoheb",
       description: "Data Analyst",
       phone: "+8801711327764",

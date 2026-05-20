@@ -25,10 +25,6 @@ const Footer = () => {
                 path: "/about"
             },
             {
-                label: "Privacy",
-                path: "/privacy"
-            },
-            {
                 label: "Team",
                 path: "/team"
             },
@@ -40,8 +36,8 @@ const Footer = () => {
                 path: "/blogs"
             },
             {
-                label: "Cancellation",
-                path: "/cancellation"
+                label: "Privacy",
+                path: "/privacy"
             },
             {
                 label: "Terms",
