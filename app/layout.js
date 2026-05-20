@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
-import Navigation from "@/components/layout/Navbar";
+import Header from "@/components/layout/Navbar";
 import Footer from "@/components/layout/footer/Footer";
 import FacebookMessenger from "@/components/layout/messnger/FacebookMessenger";
 
@@ -37,10 +37,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <PageHead />
       <body className={inter.className}>
-        <Navigation />
+        <Header />
         {children}
-        <Footer/>
-        <FacebookMessenger/>
+        <Footer />
+        <FacebookMessenger />
       </body>
     </html>
   );

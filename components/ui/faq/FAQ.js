@@ -1,52 +1,36 @@
 const FAQ = () => {
   return (
-    <div className="space-y-3">
-      <details className="rounded-lg overflow-hidden shadow-lg bg-white">
-        <summary className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 bg-white p-4">
-          <span>What is Micro Components?</span>
-          <i className="fa fa-angle-down" />
-        </summary>
-        <div className="accordion border-t">
-          <div className="py-5 font-light bg-white p-4">
-            <p className="mb-2 text-gray-500">
-              Micro Components is an open-source library of interactive
-              components built on top of Tailwind CSS including buttons,
-              dropdowns, modals, navbars, and more.
+    <section className="section bg-white">
+      <div className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
+        <div className="mt-8 space-y-4">
+          <details className="rounded-3xl border border-gray-200 p-5">
+            <summary className="cursor-pointer text-lg font-semibold text-slate-900">
+              How can I send a parcel with SS Bangla Express?
+            </summary>
+            <p className="mt-4 text-gray-600">
+              Use the tracking panel in the hero section or contact us via WhatsApp to book pickup from Dhaka and deliver across Bangladesh or internationally.
             </p>
-          </div>
-        </div>
-      </details>
-      <details className="rounded-lg overflow-hidden shadow-lg bg-white">
-        <summary className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 bg-white p-4">
-          <span>Is there a Figma file available?</span>
-          <i className="fa fa-angle-down" />
-        </summary>
-        <div className="accordion border-t">
-          <div className="py-5 font-light bg-white p-4">
-            <p className="mb-2 text-gray-500">
-              Micro Components is first conceptualized and designed using the
-              Figma software so everything you see in the library has a design
-              equivalent in our Figma file.
+          </details>
+          <details className="rounded-3xl border border-gray-200 p-5">
+            <summary className="cursor-pointer text-lg font-semibold text-slate-900">
+              Do you offer cash on delivery?
+            </summary>
+            <p className="mt-4 text-gray-600">
+              Yes, we offer COD for customer deliveries. Merchants can choose this option during booking and receive payment through our secure collection process.
             </p>
-          </div>
-        </div>
-      </details>
-      <details className="rounded-lg overflow-hidden shadow-lg bg-white">
-        <summary className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 bg-white p-4">
-          <span>What are the differences between Micro Components and Tailwind UI?</span>
-          <i className="fa fa-angle-down" />
-        </summary>
-        <div className="accordion border-t">
-          <div className="py-5 font-light bg-white p-4">
-            <p className="mb-2 text-gray-500">
-              The main difference is that the core components from Micro
-              Components are open source under the MIT license, whereas Tailwind
-              UI is a paid product.
+          </details>
+          <details className="rounded-3xl border border-gray-200 p-5">
+            <summary className="cursor-pointer text-lg font-semibold text-slate-900">
+              What areas do you cover?
+            </summary>
+            <p className="mt-4 text-gray-600">
+              We cover Dhaka city and all major districts across Bangladesh, with international routes to UK, Europe, USA, and Australia.
             </p>
-          </div>
+          </details>
         </div>
-      </details>
-    </div>
+      </div>
+    </section>
   );
 };
 

@@ -26,7 +26,7 @@ const BlogCard = ({ image = "", title = "Title", description = "Lorem ipsum dolo
                     display: "-webkit-box",
                     overflowY: "hidden",
                 }}>{description}</p> */}
-                <Link href={"/blogs"} className="text-sm text-rose-800">Read more</Link>
+                <Link href={"/blogs"} className="text-sm text-[#b81e46]">Read more</Link>
             </div>
         </div>
     )

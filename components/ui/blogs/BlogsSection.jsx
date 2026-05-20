@@ -13,7 +13,7 @@ const BlogsSection = async () => {
         blogs.length > 0 ?
             <section className="section">
                 <div className="max-w-2xl mx-auto px-4">
-                    <SectionTitle className="text-center">Get The <span className="text-rose-800">Latest</span> Our News</SectionTitle>
+                    <SectionTitle className="text-center">Get The <span className="text-[#b81e46]">Latest</span> Our News</SectionTitle>
                     <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos saepe officiis voluptatibus similique suscipit</p>
                 </div>
                 <Blogs blogs={blogs} />

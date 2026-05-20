@@ -8,7 +8,7 @@ const NavList = () => {
   const pathName = usePathname()
 
   return (
-    <div className="flex flex-col lg:flex-row items-center text-2xl lg:text-lg">
+    <nav className="flex flex-col lg:flex-row items-center text-2xl lg:text-lg">
       {navbarNavsArray.map((linkObject) => (
         <NavLink
           key={linkObject.link}
@@ -17,7 +17,7 @@ const NavList = () => {
           isActive={pathName === linkObject.link}
         />
       ))}
-    </div>
+    </nav>
   )
 }
 

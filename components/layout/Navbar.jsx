@@ -6,11 +6,11 @@ import NavList from "./navbar/NavList"
 import Profile from "./Profile"
 import AuthProvider from "@/contexts/AuthProvider"
 
-const NavBar = ({ className = "", transparent = false }) => {
+const Header = ({ className = "", transparent = false }) => {
   return (
-    <nav
+    <header
       className={twMerge(
-        "sticky top-0 z-[2] flex h-16 w-full items-center bg-white/90 backdrop-blur border-b transition-all",
+        "sticky top-0 z-[50] flex h-16 w-full items-center bg-white/90 backdrop-blur border-b transition-all",
         className
       )}
     >
@@ -29,12 +29,12 @@ const NavBar = ({ className = "", transparent = false }) => {
             <Profile />
           </AuthProvider>
         </div>
-        <div className="flex items-center justify-center lg:hidden">
+        <nav className="flex items-center justify-center lg:hidden">
           <MobileNavs />
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   )
 }
 
-export default NavBar
+export default Header

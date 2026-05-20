@@ -15,7 +15,7 @@ const NavLink = ({ name = "", link = "", isActive = false }) => {
       href={link}
       className={cn(
         "mx-4 my-2 font-medium hover:underline underline-offset-4 decoration-2",
-        isActive ? "text-rose-800" : "",
+        isActive ? "text-[#b81e46]" : "",
       )}
     >
       {name}
