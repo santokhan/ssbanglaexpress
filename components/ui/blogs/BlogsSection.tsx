@@ -1,0 +1,29 @@
+'use server'
+
+import SectionTitle from "@/components/common/SectionTitle"
+import Blogs from "./Blogs"
+import Href from "@/components/common/Href"
+
+const BlogsSection = async () => {
+    // const res = await fetch('http://localhost:3000/blogs.json')
+    // const blogs = await res.json()
+    const blogs = Array.from({ length: 5 }, () => ({}))
+
+    return (
+        blogs.length > 0 ?
+            <section className="section">
+                <div className="max-w-2xl mx-auto px-4">
+                    <SectionTitle className="text-center">Get The <span className="text-[#b81e46]">Latest</span> Our News</SectionTitle>
+                    <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos saepe officiis voluptatibus similique suscipit</p>
+                </div>
+                <Blogs blogs={blogs} />
+                <div className="container mx-auto px-4 flex justify-center">
+                    <Href href={"/blogs"}>Read more</Href>
+                </div>
+            </section>
+            :
+            null
+    );
+}
+
+export default BlogsSection

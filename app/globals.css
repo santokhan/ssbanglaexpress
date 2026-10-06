@@ -37,11 +37,6 @@
   --height-main: calc(100dvh - var(--height-header));
 }
 
-@theme {
-  --height-header: var(--height-header);
-  --height-main: var(--height-main);
-}
-
 @layer base {
   * {
     @apply border-border;
