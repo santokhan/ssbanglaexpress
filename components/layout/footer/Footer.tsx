@@ -34,9 +34,24 @@ const Footer = () => {
                 label: "Team",
                 path: "/team"
             },
-
+            {
+                label: "Contact",
+                path: "/contact"
+            },
         ],
         [
+            {
+                label: "Get a quote",
+                path: "/quote"
+            },
+            {
+                label: "Tools",
+                path: "/tools"
+            },
+            {
+                label: "Rate calculator",
+                path: "/rate-calculator"
+            },
             {
                 label: "Blogs",
                 path: "/blogs"
@@ -56,8 +71,9 @@ const Footer = () => {
         { label: `${contactDetails.shipping.label} WhatsApp: ${contactDetails.shipping.display}`, path: contactDetails.shipping.whatsapp },
         {
             label: "banglaexpress01@gmail.com",
-            path: "banglaexpress01@gmail.com"
+            path: "mailto:banglaexpress01@gmail.com"
         },
+        { label: `${contactDetails.sourcing.label} WhatsApp: ${contactDetails.sourcing.display}`, path: contactDetails.sourcing.whatsapp },
         {
             label: "South View Graund floor, House #14, Road #17, Sectors #14, Uttara Dhaka, Dhaka-1230 Bangladesh",
         },
@@ -146,8 +162,18 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li className="flex items-start gap-2">
+                                    <a
+                                        href={findUs[3].path}
+                                        className="flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4"
+                                        onClick={playClick}
+                                    >
+                                        <WhatsAppIcon />
+                                        {findUs[3].label}
+                                    </a>
+                                </li>
+                                <li className="flex items-start gap-2">
                                     <MapIcon />
-                                    {findUs[3].label}
+                                    {findUs[4].label}
                                 </li>
                             </ul>
                         </LinksBox>

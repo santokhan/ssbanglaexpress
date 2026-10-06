@@ -12,11 +12,11 @@ const Partners = () => {
         </p>
       </div>
       <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-3 gap-8">
-        <Image src="/images/partners/1.png" alt="" width={400} height={400} />
-        <Image src="/images/partners/1.png" alt="" width={400} height={400} />
-        <Image src="/images/partners/1.png" alt="" width={400} height={400} />
-        <Image src="/images/partners/1.png" alt="" width={400} height={400} />
-        <Image src="/images/partners/1.png" alt="" width={400} height={400} />
+        <Image src="/images/partners/1.png" alt="" width={400} height={400} loading="lazy" />
+        <Image src="/images/partners/1.png" alt="" width={400} height={400} loading="lazy" />
+        <Image src="/images/partners/1.png" alt="" width={400} height={400} loading="lazy" />
+        <Image src="/images/partners/1.png" alt="" width={400} height={400} loading="lazy" />
+        <Image src="/images/partners/1.png" alt="" width={400} height={400} loading="lazy" />
       </div>
     </section>
   );

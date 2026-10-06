@@ -7,7 +7,7 @@ const BlogCard = ({ image = "", title = "Title" }: { image?: string | StaticImag
     return (
         <div className="rounded-lg lg:rounded-xl bg-white">
             <Link href={"/blogs"}>
-                <Image src={image || placeholder} alt={title} className="w-full aspect-video object-cover bg-gray-50 rounded-lg lg:rounded-xl" width={400} height={400} />
+                <Image src={image || placeholder} alt={title} className="w-full aspect-video object-cover bg-gray-50 rounded-lg lg:rounded-xl" width={400} height={400} loading="lazy" />
             </Link>
             <div className="py-4">
                 <time dateTime="2022-02-03" className="text-gray-700 font-semibold">Feb 3, 2022</time>

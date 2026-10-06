@@ -1,14 +1,9 @@
 'use client'
 
-import { useState } from "react";
-
 const Copyright = () => {
-    const [clicked, setClicked] = useState(false)
-
     const playClick = () => {
-        setClicked(true)
         const audio = new Audio('/assets/sounds/click.mp3')
-        audio.play()
+        void audio.play().catch(() => undefined)
     }
 
     return (

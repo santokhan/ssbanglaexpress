@@ -6,6 +6,7 @@ export type AuthUser = { name?: string; username?: string; email?: string };
 export type AuthContextValue = {
   user: AuthUser | null;
   setUser: Dispatch<SetStateAction<AuthUser | null>>;
+  isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);

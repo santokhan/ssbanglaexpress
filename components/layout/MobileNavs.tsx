@@ -3,7 +3,7 @@
 "use client";
 
 import Drawer from "rc-drawer";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CloseCircle } from "iconsax-react";
 import Social from "./footer/Social";

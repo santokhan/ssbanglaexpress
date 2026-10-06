@@ -20,20 +20,17 @@ const ForgotPasswordPage = () => {
     setMessage("")
 
     try {
-      // Example: call your API here
-      // const response = await fetch("/api/auth/forgot-password", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ email }),
-      // })
-
-      // if (!response.ok) throw new Error("Failed to send reset link")
-
-      // Simulate API delay for demo
-      await new Promise((r) => setTimeout(r, 1500))
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL
+      if (!apiUrl) throw new Error("Password recovery is not configured. Please contact our team.")
+      const response = await fetch(`${apiUrl.replace(/\/$/, "")}/v1/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+      if (!response.ok) throw new Error("We could not process your request. Please try again later.")
 
       setStatus("success")
-      setMessage("Reset link sent! Please check your email.")
+      setMessage("If an account matches that email, password reset instructions will be sent.")
     } catch (error) {
       setStatus("error")
       setMessage(error instanceof Error ? error.message : "Something went wrong.")

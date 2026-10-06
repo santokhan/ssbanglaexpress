@@ -7,7 +7,7 @@ const AboutUs = () => {
     return (
         <section className="section">
             <div className="container mx-auto px-4 flex flex-wrap items-center gap-12">
-                <Image src={aboutImage} alt={'about'} className="basis-96 flex-grow aspect-[4/3] object-cover rounded-xl" width={600} height={600} />
+                <Image src={aboutImage} alt={'about'} className="basis-96 flex-grow aspect-[4/3] object-cover rounded-xl" width={600} height={600} loading="lazy" />
 
                 <div className="basis-96 flex-grow space-y-4">
                     <SectionTitle className="">Efficient Shipment Services: Reliable Delivery Solutions</SectionTitle>
@@ -37,7 +37,7 @@ const AboutUs = () => {
                         <div className="mb-4">
                             <h3 className="text-xl font-semibold mb-2">Parcel Tracking</h3>
                             <p className="text-gray-700 mb-4">
-                                Stay informed with real-time tracking updates. Know where your package is every step of the way.
+                                Track shipments through the selected carrier&apos;s tracking page.
                             </p>
                         </div>
                     </div>

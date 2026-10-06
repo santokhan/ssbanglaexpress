@@ -23,17 +23,15 @@ const ResetPasswordPage = () => {
         setMessage("")
 
         try {
-            // Simulate API call delay
-            await new Promise((resolve) => setTimeout(resolve, 1500))
-
-            // Here you would call your real API to reset the password
-            // Example:
-            // const res = await fetch('/api/reset-password', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({ password }),
-            // })
-            // if (!res.ok) throw new Error('Reset failed')
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL
+            const token = new URLSearchParams(window.location.search).get("token")
+            if (!apiUrl || !token) throw new Error("This reset link is invalid or password recovery is not configured.")
+            const response = await fetch(`${apiUrl.replace(/\/$/, "")}/v1/reset-password`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token, password }),
+            })
+            if (!response.ok) throw new Error("This reset link may have expired. Request a new link and try again.")
 
             setStatus("success")
             setMessage("Your password has been reset successfully.")

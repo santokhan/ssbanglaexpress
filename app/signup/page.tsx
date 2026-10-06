@@ -1,125 +1,53 @@
-'use client'
+"use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react"
+import { useState, type FormEvent } from "react";
 
-const Page = () => {
-    const [form, setForm] = useState({
-        name: '',
-        username: '',
-        email: '',
-        phone: '',
-        password: '',
-    })
+export default function SignupPage() {
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setForm({
-            ...form,
-            [name]: value,
-        })
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) {
+      setMessage("Account registration is not configured yet. Please contact our team for help.");
+      return;
     }
 
-    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-
-        try {
-            const API = process.env.NEXT_PUBLIC_API_URL
-
-            const response = await fetch(API + "/v1/signin", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(form),
-            })
-
-            const data = await response.json()
-
-            if (response.ok) {
-                // Handle successful signup, e.g., redirect to login page
-            } else {
-                // Handle signup error, e.g., display error message
-            }
-        } catch (error) {
-            console.log(error)
-        }
+    setIsSubmitting(true);
+    setMessage("");
+    try {
+      const response = await fetch(`${apiUrl.replace(/\/$/, "")}/v1/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))),
+      });
+      setMessage(response.ok
+        ? "Your account request was received. You can sign in once your account is active."
+        : "We could not create your account. Check your details or contact our team.");
+    } catch {
+      setMessage("Unable to reach the account service. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
+  }
 
-    return (
-        <div className="min-h-svh flex flex-col items-center justify-evenly bg-gray-50 px-4">
-            <div className="max-w-md w-full space-y-8 p-8 bg-white shadow-xl rounded-2xl">
-                <div className="text-center">
-                    <h2 className="text-3xl font-extrabold text-gray-900">Create your account</h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        Already have an account? <a href="/signin" className="text-red-600 hover:underline">Sign in</a>
-                    </p>
-                </div>
-
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="space-y-4">
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                Full Name
-                            </label>
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                required
-                                className="default"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                                Username
-                            </label>
-                            <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                required
-                                className="default"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                Email address
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                required
-                                className="default"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autoComplete="new-password"
-                                required
-                                className="default"
-                            />
-                        </div>
-                    </div>
-
-                    <div>
-                        <button className="default w-full">Sign Up</button>
-                    </div>
-                </form>
-            </div>
-            <div className=""></div>
+  return (
+    <main className="flex min-h-svh flex-col items-center justify-center bg-gray-50 px-4 py-10">
+      <div className="w-full max-w-md space-y-8 rounded-2xl bg-white p-8 shadow-xl">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold text-gray-900">Create your account</h1>
+          <p className="mt-2 text-sm text-gray-600">Already have an account? <a href="/signin" className="text-red-600 hover:underline">Sign in</a></p>
         </div>
-    )
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <label className="block text-sm font-medium text-gray-700">Full name<input name="name" autoComplete="name" required maxLength={100} className="default" /></label>
+          <label className="block text-sm font-medium text-gray-700">Username<input name="username" autoComplete="username" required minLength={3} maxLength={50} className="default" /></label>
+          <label className="block text-sm font-medium text-gray-700">Email address<input name="email" type="email" autoComplete="email" required maxLength={254} className="default" /></label>
+          <label className="block text-sm font-medium text-gray-700">Password<input name="password" type="password" autoComplete="new-password" required minLength={12} className="default" /></label>
+          <button className="default w-full" disabled={isSubmitting}>{isSubmitting ? "Creating account…" : "Sign Up"}</button>
+          {message && <p role="status" className="text-center text-sm text-slate-700">{message}</p>}
+        </form>
+      </div>
+    </main>
+  );
 }
-
-export default Page

@@ -4,9 +4,11 @@ import ContactForm from "./ContactFrom";
 const MapAndForm = () => {
     return (
         <section className="section">
-            <div className="container mx-auto px-4 grid gap-8 lg:grid-cols-[minmax(300px,1fr)_minmax(340px,1fr)]">
-                <Map className="min-h-[420px]" />
+            <div className="container mx-auto space-y-8 px-4 lg:space-y-10">
                 <ContactForm />
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-[0_18px_55px_-30px_rgba(15,23,42,0.3)]">
+                    <Map className="min-h-[300px] max-h-[380px]" />
+                </div>
             </div>
         </section>
     );

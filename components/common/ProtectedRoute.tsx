@@ -2,22 +2,18 @@
 
 import useAuth from "@/hooks/useAuth"
 import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 import type { ReactNode } from "react"
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-    const { user } = useAuth()
+    const { user, isLoading } = useAuth()
+    const router = useRouter()
 
     useEffect(() => {
-        if (!user) {
-            window.location.href = "/signin"
-        }
-    }, [user])
+        if (!isLoading && !user) router.replace("/signin")
+    }, [isLoading, user, router])
 
-    if (user) {
-        return children
-    }
-
-    return null
+    return !isLoading && user ? children : null
 }
 
 export default ProtectedRoute

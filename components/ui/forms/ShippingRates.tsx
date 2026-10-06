@@ -1,103 +1,15 @@
-'use client';
-
-import countries from "@/lib/countries"
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import Link from "next/link";
 
 function ShippingRates() {
-    const [form, setForm] = useState({
-        from: '',
-        to: '',
-        weight: '',
-        unit: 'kg',
-        type: 'parcel',
-    })
-
-    function handleChange(e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        })
-    }
-
-    async function calculateShipping(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-
-        try {
-            const response = await fetch('/api/shipping', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(form),
-            })
-
-            const data = await response.json()
-            console.log(data)
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
     return (
-        <div className="max-w-4xl mx-auto p-4 border border-gray-300 rounded-2xl lg:p-6">
-            <form className="space-y-6" onSubmit={calculateShipping}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">From</label>
-                        <select className="default" required name="from" onChange={handleChange} value={form.from}>
-                            <option>Country</option>
-                            {countries.map((country) => (
-                                <option key={country.code}>{country.name}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">To</label>
-                        <select className="default" required name="to" onChange={handleChange} value={form.to}>
-                            <option>Country</option>
-                            {countries.map((country) => (
-                                <option key={country.code}>{country.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Weight</label>
-                        <input
-                            type="number"
-                            placeholder="e.g. 2.5"
-                            className="default"
-                            required
-                            name="weight"
-                            onChange={handleChange}
-                            value={form.weight}
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Unit</label>
-                        <select className="default" name="unit" required onChange={handleChange}>
-                            <option value="kg">Kilograms (kg)</option>
-                            <option value="lb">Pounds (lb)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Shipment Type</label>
-                        <select className="default" name="type" required onChange={handleChange} value={form.type}>
-                            <option value="documents">Documents</option>
-                            <option value="parcel">Parcel</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div className="pt-4">
-                    <button className="default">Calculate Shipping</button>
-                </div>
-            </form>
+        <div className="mx-auto max-w-4xl rounded-2xl border border-gray-300 p-6 lg:p-8">
+            <div className="max-w-2xl">
+                <h2 className="text-xl font-semibold text-slate-900">Request a route-specific quote</h2>
+                <p className="mt-3 leading-7 text-slate-600">
+                    Shipping prices depend on the destination, dimensions, service, and current carrier rates. Contact our team for a confirmed quote; this site does not publish unapproved estimates.
+                </p>
+                <Link href="/quote" className="default mt-6">Request a shipping quote</Link>
+            </div>
         </div>
     )
 }

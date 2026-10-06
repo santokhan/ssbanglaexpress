@@ -12,7 +12,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 222.2 47.4% 11.2%;
+  --primary: 346 72% 42%;
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96.1%;
@@ -29,7 +29,7 @@
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --ring: 346 72% 42%;
 
   --radius: 0.5rem;
 
@@ -53,7 +53,7 @@
 
 @layer utilities {
   section.section {
-    @apply py-16 lg:py-24 space-y-16;
+    @apply py-16 lg:py-20 space-y-14;
   }
 
   input.default,
@@ -64,6 +64,6 @@
 
   button.default,
   a.default {
-    @apply inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-700;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-transparent bg-[#b81e46] px-7 py-3 text-sm font-bold text-white shadow-lg shadow-[#b81e46]/20 transition hover:-translate-y-0.5 hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46];
   }
 }

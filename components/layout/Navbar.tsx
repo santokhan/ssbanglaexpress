@@ -11,7 +11,7 @@ const Header = ({ className = "", transparent = false }: { className?: string; t
   return (
     <header
       className={twMerge(
-        "sticky top-0 z-[50] flex h-16 w-full items-center bg-white/90 backdrop-blur border-b transition-all",
+        "sticky top-0 z-[50] flex h-[72px] w-full items-center border-b border-slate-100 bg-white/95 shadow-sm shadow-slate-900/[0.03] backdrop-blur-xl transition-all",
         className
       )}
     >
@@ -26,13 +26,13 @@ const Header = ({ className = "", transparent = false }: { className?: string; t
         </div>
         <div className="hidden lg:flex items-center gap-4">
           <NavList transparent={transparent} />
-          <a href={contactDetails.main.tel} className="rounded-full bg-[#b81e46] px-4 py-2 text-sm font-semibold text-white">Call Us</a>
+          <Link href="/quote" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#b81e46] px-7 py-3 text-sm font-bold text-white shadow-lg shadow-[#b81e46]/20 transition hover:-translate-y-0.5 hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46]">Request a quote</Link>
           <AuthProvider>
             <Profile />
           </AuthProvider>
         </div>
         <nav className="flex items-center justify-center lg:hidden">
-          <a href={contactDetails.main.tel} className="mr-3 rounded-full bg-[#b81e46] px-3 py-2 text-xs font-semibold text-white">Call</a>
+          <a href={contactDetails.main.tel} className="mr-3 inline-flex min-h-12 items-center justify-center rounded-full bg-[#b81e46] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#b81e46]/20 transition hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46]">Call</a>
           <MobileNavs />
         </nav>
       </div>
