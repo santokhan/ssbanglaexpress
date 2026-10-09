@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation"
 import NavLink from "./NavLink"
 import { navbarNavsArray } from "../navs"
 
-type NavListProps = { transparent?: boolean; className?: string };
+type NavListProps = { transparent?: boolean; className?: string; onNavigate?: () => void };
 
-const NavList = ({ className = "" }: NavListProps) => {
+const NavList = ({ className = "", onNavigate }: NavListProps) => {
   const pathName = usePathname()
 
   return (
@@ -17,6 +17,7 @@ const NavList = ({ className = "" }: NavListProps) => {
           link={linkObject.link}
           name={linkObject.name}
           isActive={pathName === linkObject.link}
+          onClick={onNavigate}
         />
       ))}
     </nav>

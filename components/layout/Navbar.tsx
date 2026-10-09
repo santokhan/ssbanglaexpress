@@ -15,23 +15,23 @@ const Header = ({ className = "", transparent = false }: { className?: string; t
         className
       )}
     >
-      <div className="container mx-auto flex w-full flex-1 items-center justify-between px-4 h-full">
-        <div className="md:w-2/12 flex-shrink-0 flex">
+      <div className="container mx-auto flex h-full w-full flex-1 items-center justify-between px-4 sm:px-6">
+        <div className="flex shrink-0 items-center">
           <Link
             href="/"
             className="router-link-active router-link-exact-active"
           >
-            <Logo className="max-h-14" />
+            <Logo className="h-11 w-auto sm:h-12" />
           </Link>
         </div>
         <AuthProvider>
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-4">
             <NavList transparent={transparent} />
             <Link href="/quote" className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#b81e46] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#b81e46]/20 transition hover:-translate-y-0.5 hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46]">Request a quote</Link>
             <Profile />
           </div>
-          <nav className="flex items-center justify-center lg:hidden">
-            <a href={contactDetails.main.tel} className="mr-3 inline-flex min-h-12 items-center justify-center rounded-full bg-[#b81e46] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#b81e46]/20 transition hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46]">Call</a>
+          <nav aria-label="Mobile actions" className="flex items-center gap-2 lg:hidden">
+            <a href={contactDetails.main.tel} aria-label="Call SS Bangla Express" className="inline-flex size-11 items-center justify-center rounded-full bg-[#b81e46] text-sm font-bold text-white shadow-lg shadow-[#b81e46]/20 transition hover:bg-[#94183a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b81e46] sm:w-auto sm:px-5">Call<span className="hidden sm:inline sm:ml-1"> us</span></a>
             <MobileNavs />
           </nav>
         </AuthProvider>

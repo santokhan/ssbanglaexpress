@@ -130,10 +130,10 @@ export default function AboutUs() {
       </section>
 
       <section className="container mx-auto px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-3xl rounded-[2rem] bg-slate-950 px-6 py-10 text-white sm:px-10 sm:py-12">
+        <div className="mx-auto max-w-5xl rounded-[2rem] bg-slate-950 px-6 py-10 text-white sm:px-10 sm:py-12">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-rose-300">Part of a wider group</p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Connected expertise, distinct teams.</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-slate-300">SS Bangla Group brings together businesses supporting logistics and trade. SS Bangla Express focuses on courier and cargo; the group’s other teams work across sourcing, textiles, apparel, and wholesale trade.</p>
+          <p className="mt-4 leading-7 text-slate-300">SS Bangla Group brings together businesses supporting logistics and trade. SS Bangla Express focuses on courier and cargo; the group’s other teams work across sourcing, textiles, apparel, and wholesale trade.</p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {groupBusinesses.map(({ icon: Icon, name, description }) => (
               <div key={name} className="rounded-xl border border-white/10 bg-white/[0.06] p-4">
