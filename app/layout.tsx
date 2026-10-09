@@ -9,7 +9,7 @@ import FacebookMessenger from "@/components/layout/messnger/FacebookMessenger";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.ssbanglaexpress.com"),
+  metadataBase: new URL(`https://${process.env.DOMAIN ?? "ssbanglaexpress.com"}`),
   title: "SS Bangla Express",
   description:
     "International courier service, logistics, shipping, import, door-to-door",

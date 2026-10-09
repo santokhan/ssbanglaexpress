@@ -12,6 +12,10 @@ const navbarNavsArray = [
     link: "/services",
   },
   {
+    name: "Book a shipment",
+    link: "/book",
+  },
+  {
     name: "Tools",
     link: "/tools",
   },

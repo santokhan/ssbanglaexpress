@@ -143,6 +143,9 @@ model Shipment {
   id                 String          @id @default(cuid())
   trackingNumber     String          @unique
   userId             String?
+  customerName       String          @default("")
+  customerEmail      String          @default("")
+  customerPhone      String          @default("")
   quoteRequestId     String?         @unique
   senderAddressId    String?
   recipientAddressId String?
@@ -150,6 +153,11 @@ model Shipment {
   status             ShipmentStatus  @default(BOOKED)
   origin             String
   destination        String
+  pickupAddress      String          @default("")
+  deliveryAddress    String          @default("")
+  packageDescription String          @default("")
+  cartons            Int             @default(1)
+  specialInstructions String         @default("")
   weight             Decimal?        @db.Decimal(10, 2)
   weightUnit         String          @default("kg")
   currency           String          @default("BDT")
