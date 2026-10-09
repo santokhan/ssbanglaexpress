@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         description:
             "International courier service, logistics, shipping, import, door-to-door",
         images: [{
-            url: "/opengraph-image.png",
+            url: "/opengraph-image.webp",
             width: 1200,
             height: 630,
             alt: "SS Bangla Express worldwide door-to-door courier service",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         title: "SS Bangla Express",
         description:
             "International courier service, logistics, shipping, import, door-to-door",
-        images: ["/opengraph-image.png"],
+        images: ["/opengraph-image.webp"],
     },
 };
 

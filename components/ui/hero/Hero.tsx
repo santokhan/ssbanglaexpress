@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import cargoPort from "@/assets/images/services-image.png";
+import cargoPort from "@/assets/images/services-image.webp";
 import { contactDetails } from "@/lib/contact-details";
 
 export default function Hero() {

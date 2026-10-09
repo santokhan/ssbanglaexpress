@@ -1,5 +1,5 @@
 import Image from "next/image"
-import placeholder from '@/assets/images/placeholder.png'
+import placeholder from '@/assets/images/placeholder.webp'
 import Link from "next/link"
 import type { StaticImageData } from "next/image";
 

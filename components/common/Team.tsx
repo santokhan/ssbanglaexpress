@@ -1,5 +1,5 @@
 import Image from "next/image";
-import shahinImage from "@/assets/images/team/shahin.png";
+import shahinImage from "@/assets/images/team/shahin.webp";
 import SectionTitle from "./SectionTitle";
 
 const teamMembers = [

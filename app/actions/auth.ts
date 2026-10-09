@@ -31,6 +31,7 @@ export async function signInWithGoogle(credential: unknown): Promise<GoogleSignI
 
   try {
     const email = claims.email.toLowerCase();
+    const avatarUrl = typeof claims.picture === "string" ? claims.picture : null;
     let user = await prisma.user.findUnique({ where: { googleId: claims.sub } });
     if (!user) {
       const existing = await prisma.user.findUnique({ where: { email } });
@@ -38,8 +39,10 @@ export async function signInWithGoogle(credential: unknown): Promise<GoogleSignI
         return { ok: false, message: "This email is linked to another Google account." };
       }
       user = existing
-        ? await prisma.user.update({ where: { id: existing.id }, data: { googleId: claims.sub, name: existing.name || claims.name || email } })
-        : await prisma.user.create({ data: { email, name: claims.name || email, googleId: claims.sub } });
+        ? await prisma.user.update({ where: { id: existing.id }, data: { googleId: claims.sub, name: existing.name || claims.name || email, ...(avatarUrl ? { avatarUrl } : {}) } })
+        : await prisma.user.create({ data: { email, name: claims.name || email, googleId: claims.sub, avatarUrl } });
+    } else if (avatarUrl && user.avatarUrl !== avatarUrl) {
+      user = await prisma.user.update({ where: { id: user.id }, data: { avatarUrl } });
     }
 
     await createSession(user.id, await headers());

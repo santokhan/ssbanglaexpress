@@ -20,7 +20,7 @@ const Profile = () => {
     }
 
     const href = '/profile'
-    const avatar = user?.image || user?.picture
+    const avatar = user?.avatarUrl
     const initials = (user?.name || user?.email || '?')
         .trim()
         .split(/\s+/)

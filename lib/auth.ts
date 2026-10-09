@@ -70,7 +70,7 @@ export async function getSessionUser() {
         expiresAt: { gt: new Date() },
       },
       select: {
-        user: { select: { id: true, name: true, email: true } },
+        user: { select: { id: true, name: true, email: true, avatarUrl: true, role: true } },
       },
     });
     return session?.user ?? null;

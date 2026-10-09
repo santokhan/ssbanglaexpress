@@ -2,6 +2,7 @@ import Team from "@/components/common/Team";
 import AboutUs from "@/components/ui/about/AboutUs";
 import BannerBottom from "@/components/ui/banner/BannerBottom";
 import type { Metadata } from "next";
+import CopyPageContent from "@/components/common/CopyPageContent";
 
 export const metadata: Metadata = {
   title: "About SS Bangla Express | Courier & Cargo from Bangladesh",
@@ -10,12 +11,11 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="">
+    <div id="share-page-content">
+      <div className="container mx-auto flex justify-end px-4 pt-5"><CopyPageContent contentId="share-page-content" /></div>
       <AboutUs />
       <Team />
-      <section className="section">
-        <BannerBottom />
-      </section>
+      <section className="section"><BannerBottom /></section>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CopyPageContent from "@/components/common/CopyPageContent";
 
 const steps = [
   ["Contact us promptly", "Share your booking or tracking reference and let us know you want to cancel. A request is not confirmed until our team replies."],
@@ -9,7 +10,8 @@ const steps = [
 export default function CancellationPage() {
   return (
     <main className="bg-slate-50 py-14 sm:py-20">
-      <div className="container mx-auto px-4">
+      <div id="share-page-content" className="container mx-auto px-4">
+        <div className="mb-6 flex justify-end"><CopyPageContent contentId="share-page-content" /></div>
         <header className="mx-auto max-w-3xl text-center">
           <span className="inline-flex rounded-full bg-[#b81e46]/10 px-4 py-1.5 text-sm font-semibold text-[#b81e46]">Booking support</span>
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Cancellation Policy</h1>

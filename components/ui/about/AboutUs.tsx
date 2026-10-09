@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, Boxes, Check, Globe2, PackageCheck, Plane, Ship, Shirt, Truck } from "lucide-react";
-import aboutImage from "@/assets/images/about-us.png";
+import aboutImage from "@/assets/images/about-us.webp";
 
 const services = [
   {

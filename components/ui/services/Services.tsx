@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Boxes, Search, Shirt, ShoppingBag, Truck } from "lucide-react";
-import courierImage from "@/assets/images/about-us.png";
-import cargoImage from "@/assets/images/services-image.png";
-import sourcingImage from "@/assets/images/services-section.png";
+import courierImage from "@/assets/images/about-us.webp";
+import cargoImage from "@/assets/images/services-image.webp";
+import sourcingImage from "@/assets/images/services-section.webp";
 
 const businesses = [
   {

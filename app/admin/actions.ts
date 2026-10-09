@@ -9,7 +9,7 @@ const statuses = ["BOOKED", "PICKUP_SCHEDULED", "PICKED_UP", "IN_TRANSIT", "CUST
 
 export async function updateShipmentStatus(formData: FormData) {
   const user = await getSessionUser();
-  if (!user || !isShipmentAdmin(user.email)) throw new Error("Unauthorized");
+  if (!user || !isShipmentAdmin(user)) throw new Error("Unauthorized");
   const shipmentId = String(formData.get("shipmentId") ?? "");
   const status = String(formData.get("status") ?? "");
   const description = String(formData.get("description") ?? "").trim().slice(0, 300);
@@ -20,4 +20,6 @@ export async function updateShipmentStatus(formData: FormData) {
     await tx.shipmentEvent.create({ data: { shipmentId: shipment.id, status: status as (typeof statuses)[number], description, location: location || null } });
   });
   revalidatePath("/admin");
+  revalidatePath("/admin/shipments");
+  revalidatePath(`/admin/shipments/${shipmentId}`);
 }
