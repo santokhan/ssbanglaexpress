@@ -33,7 +33,7 @@
 
   --radius: 0.5rem;
 
-  --height-header: calc(4rem - 1px);
+  --height-header: 72px;
   --height-main: calc(100dvh - var(--height-header));
 }
 
@@ -47,11 +47,32 @@
   }
 }
 
-@layer components {
-  /*  */
-}
-
 @layer utilities {
+  .auth-page {
+    @apply relative isolate flex min-h-[var(--height-main)] items-center justify-center overflow-hidden bg-[#f8f6f3] px-4 py-12;
+    background-image: radial-gradient(ellipse at 12% 14%, rgba(184, 30, 70, .10), transparent 32%), radial-gradient(ellipse at 90% 88%, rgba(17, 56, 65, .10), transparent 34%);
+  }
+
+  .auth-card {
+    @apply relative z-10 w-full max-w-md rounded-[1.75rem] border border-white/80 bg-white/95 p-7 shadow-[0_24px_80px_-32px_rgba(37,35,32,.28)] backdrop-blur sm:p-10;
+  }
+
+  .auth-heading {
+    @apply text-3xl font-extrabold tracking-tight text-slate-900 sm:text-[2rem];
+  }
+
+  .auth-copy {
+    @apply mt-2 text-sm leading-6 text-slate-500;
+  }
+
+  .auth-link {
+    @apply font-semibold text-[#b81e46] transition hover:text-[#94183a] hover:underline;
+  }
+
+  .auth-card input.default {
+    @apply mt-2 rounded-xl border-slate-200 bg-slate-50/70 py-3 transition placeholder:text-slate-400 focus:border-[#b81e46] focus:bg-white focus:ring-4 focus:ring-[#b81e46]/10;
+  }
+
   section.section {
     @apply py-16 lg:py-20 space-y-14;
   }

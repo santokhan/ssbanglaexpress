@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contactDetails } from "@/lib/contact-details";
 import { submitContact } from "@/app/actions/requests";
@@ -10,20 +10,20 @@ const fieldClassName =
     "block w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-[#b81e46] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#b81e46]/10";
 
 const ContactForm = ({ className = "" }: { className?: string }) => {
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState<{ message: string; reference?: string } | null>(null);
     const [sending, setSending] = useState(false);
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget;
         setSending(true);
-        setStatus("");
+        setStatus(null);
         try {
             const result = await submitContact(Object.fromEntries(new FormData(form)));
-            if (!result.ok) { setStatus(result.error); return; }
+            if (!result.ok) { setStatus({ message: result.error }); return; }
             form.reset();
-            setStatus("Your message has been received. Our team will be in touch soon.");
+            setStatus({ message: "Your message has been received. Our team will be in touch soon.", reference: result.id });
         } catch {
-            setStatus("We could not send your message. Please try again.");
+            setStatus({ message: "We could not send your message. Please try again." });
         } finally { setSending(false); }
     }
     return (
@@ -33,12 +33,12 @@ const ContactForm = ({ className = "" }: { className?: string }) => {
                 <h2 className="mt-3 text-3xl font-bold tracking-tight">Contact information</h2>
                 <p className="mt-3 text-sm leading-6 text-white/75">Reach our team for shipping, sourcing, or any other questions.</p>
                 <div className="mt-8 space-y-3">
-                    <a className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:bg-white/15" href={contactDetails.shipping.whatsapp} target="_blank" rel="noreferrer">
-                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15"><MessageCircle size={19} /></span>
+                    <a className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:bg-white/15" href={`tel:${contactDetails.shipping.display.replace(/\s/g, "")}`}>
+                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15"><Phone size={19} /></span>
                         <span className="min-w-0"><span className="block text-xs text-white/65">{contactDetails.shipping.label}</span><span className="block truncate text-sm font-semibold">{contactDetails.shipping.display}</span></span>
                     </a>
-                    <a className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:bg-white/15" href={contactDetails.sourcing.whatsapp} target="_blank" rel="noreferrer">
-                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15"><MessageCircle size={19} /></span>
+                    <a className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:bg-white/15" href={`tel:${contactDetails.sourcing.display.replace(/\s/g, "")}`}>
+                        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15"><Phone size={19} /></span>
                         <span className="min-w-0"><span className="block text-xs text-white/65">{contactDetails.sourcing.label}</span><span className="block truncate text-sm font-semibold">{contactDetails.sourcing.display}</span></span>
                     </a>
                     <a className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:bg-white/15" href={contactDetails.main.tel}>
@@ -47,7 +47,7 @@ const ContactForm = ({ className = "" }: { className?: string }) => {
                     </a>
                 </div>
                 <div className="mt-7 space-y-5 border-t border-white/20 pt-6">
-                    <div className="flex items-start gap-3"><Mail size={18} className="mt-0.5 shrink-0 text-white/75" /><div><p className="text-xs font-semibold uppercase tracking-wide text-white/60">Email</p><a className="mt-1 block break-all text-sm font-medium hover:underline" href="mailto:banglaexpress01@gmail.com">banglaexpress01@gmail.com</a></div></div>
+                    <div className="flex items-start gap-3"><Mail size={18} className="mt-0.5 shrink-0 text-white/75" /><div><p className="text-xs font-semibold uppercase tracking-wide text-white/60">Email</p><a className="mt-1 block break-all text-sm font-medium hover:underline" href="mailto:banglaexpress01@gmail.com">banglaexpress01@gmail.com</a><a className="mt-1 block break-all text-sm font-medium hover:underline" href="mailto:info@ssbanglaexpress.com">info@ssbanglaexpress.com</a></div></div>
                     <div className="flex items-start gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-white/75" /><div><p className="text-xs font-semibold uppercase tracking-wide text-white/60">Visit us</p><p className="mt-1 text-sm leading-5 text-white/90">South View, House #14, Road #17, Sector #14, Uttara, Dhaka 1230</p></div></div>
                 </div>
             </aside>
@@ -73,7 +73,7 @@ const ContactForm = ({ className = "" }: { className?: string }) => {
                             {sending ? "Sending…" : "Send message"} <Send size={16} />
                         </button>
                     </div>
-                    {status && <p role="status" className="text-sm font-medium text-slate-700">{status}</p>}
+                    {status && <div role="status" className="rounded-xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700"><p>{status.message}</p>{status.reference && <p className="mt-1">Reference: <span className="font-bold text-[#a61940]">{status.reference}</span></p>}</div>}
                 </form>
             </div>
         </div>

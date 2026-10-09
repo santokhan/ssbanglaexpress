@@ -73,9 +73,13 @@ const Footer = () => {
             label: "banglaexpress01@gmail.com",
             path: "mailto:banglaexpress01@gmail.com"
         },
+        {
+            label: "info@ssbanglaexpress.com",
+            path: "mailto:info@ssbanglaexpress.com"
+        },
         { label: `${contactDetails.sourcing.label} WhatsApp: ${contactDetails.sourcing.display}`, path: contactDetails.sourcing.whatsapp },
         {
-            label: "South View Graund floor, House #14, Road #17, Sectors #14, Uttara Dhaka, Dhaka-1230 Bangladesh",
+            label: "South View Ground Floor, House #14, Road #17, Sector #14, Uttara, Dhaka 1230, Bangladesh",
         },
     ]
     const pathName = usePathname()
@@ -131,50 +135,26 @@ const Footer = () => {
                         <LinksBox className="basis-64">
                             <Title>Find us</Title>
                             <ul className="flex flex-col items-start space-y-4">
-                                <li className="flex items-start justify-start gap-2">
-                                    <a
-                                        href={findUs[0].path}
-                                        className="flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4"
-                                        onClick={playClick}
-                                    >
-                                        <CallIcon />
-                                        {findUs[0].label}
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <a
-                                        href={findUs[1].path}
-                                        className="flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4"
-                                        onClick={playClick}
-                                    >
-                                        <WhatsAppIcon />
-                                        {findUs[1].label}
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <a
-                                        href={findUs[2].path}
-                                        className="flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4"
-                                        onClick={playClick}
-                                    >
-                                        <MailIcon />
-                                        {findUs[2].label}
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <a
-                                        href={findUs[3].path}
-                                        className="flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4"
-                                        onClick={playClick}
-                                    >
-                                        <WhatsAppIcon />
-                                        {findUs[3].label}
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <MapIcon />
-                                    {findUs[4].label}
-                                </li>
+                                {findUs.map((item, index) => {
+                                    const Icon = [CallIcon, WhatsAppIcon, MailIcon, MailIcon, WhatsAppIcon, MapIcon][index] ?? MapIcon;
+                                    const className = "flex items-center gap-2 transition-all ease-in hover:translate-x-2 hover:underline hover:decoration-2 hover:underline-offset-4";
+
+                                    return (
+                                        <li key={item.label} className="flex items-start gap-2">
+                                            {item.path ? (
+                                                <a href={item.path} className={className} onClick={playClick}>
+                                                    <Icon />
+                                                    {item.label}
+                                                </a>
+                                            ) : (
+                                                <span className="flex items-start gap-2">
+                                                    <Icon />
+                                                    {item.label}
+                                                </span>
+                                            )}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </LinksBox>
                     </div>

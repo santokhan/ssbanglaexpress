@@ -10,7 +10,7 @@ export const contactDetails = {
     whatsapp: "https://wa.me/8801716375311",
   },
   main: {
-    label: "Main / Direct Call",
+    label: "Direct Call",
     display: "+8801711327764",
     tel: "tel:+8801711327764",
   },

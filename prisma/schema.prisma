@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum QuoteStatus {
+  NEW
+  REVIEWING
+  QUOTED
+  ACCEPTED
+  DECLINED
+  CONVERTED
+  CLOSED
+}
+
+enum ShipmentStatus {
+  BOOKED
+  PICKUP_SCHEDULED
+  PICKED_UP
+  IN_TRANSIT
+  CUSTOMS_CLEARANCE
+  OUT_FOR_DELIVERY
+  DELIVERED
+  ON_HOLD
+  CANCELLED
+  EXCEPTION
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  passwordHash  String?
+  googleId      String?        @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  sessions      UserSession[]
+  passwordResetTokens PasswordResetToken[]
+  addresses     Address[]
+  quoteRequests QuoteRequest[]
+  shipments     Shipment[]
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model UserSession {
+  id        String    @id
+  userId    String
+  ipAddress String?
+  userAgent String?
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  revokedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model QuoteRequest {
+  id          String      @id
+  type        String
+  receivedAt  DateTime    @default(now())
+  fullName    String
+  email       String
+  phone       String
+  origin      String
+  destination String
+  itemType    String
+  weight      String
+  cartons     String
+  dimensions  String
+  quantity    String
+  sizeRange   String
+  material    String
+  targetPrice String
+  details     String
+  status      QuoteStatus @default(NEW)
+  userId      String?
+  user        User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  shipment    Shipment?
+
+  @@index([status, receivedAt])
+  @@index([userId, receivedAt])
+}
+
+model ContactMessage {
+  id         String   @id
+  receivedAt DateTime @default(now())
+  firstName  String
+  lastName   String
+  email      String
+  phone      String
+  message    String
+}
+
+model Address {
+  id           String     @id @default(cuid())
+  userId       String
+  label        String?
+  fullName     String
+  phone        String
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  state        String?
+  postalCode   String?
+  country      String
+  isDefault    Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  senderFor    Shipment[] @relation("ShipmentSenderAddress")
+  recipientFor Shipment[] @relation("ShipmentRecipientAddress")
+
+  @@index([userId])
+}
+
+model Shipment {
+  id                 String          @id @default(cuid())
+  trackingNumber     String          @unique
+  userId             String?
+  quoteRequestId     String?         @unique
+  senderAddressId    String?
+  recipientAddressId String?
+  serviceType        String
+  status             ShipmentStatus  @default(BOOKED)
+  origin             String
+  destination        String
+  weight             Decimal?        @db.Decimal(10, 2)
+  weightUnit         String          @default("kg")
+  currency           String          @default("BDT")
+  quotedAmount       Decimal?        @db.Decimal(12, 2)
+  bookedAt           DateTime        @default(now())
+  estimatedDelivery  DateTime?
+  deliveredAt        DateTime?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  user               User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+  quoteRequest       QuoteRequest?   @relation(fields: [quoteRequestId], references: [id], onDelete: SetNull)
+  senderAddress      Address?        @relation("ShipmentSenderAddress", fields: [senderAddressId], references: [id], onDelete: SetNull)
+  recipientAddress   Address?        @relation("ShipmentRecipientAddress", fields: [recipientAddressId], references: [id], onDelete: SetNull)
+  trackingEvents     ShipmentEvent[]
+  payments           PaymentRecord[]
+
+  @@index([userId, bookedAt])
+  @@index([status, updatedAt])
+}
+
+model ShipmentEvent {
+  id          String         @id @default(cuid())
+  shipmentId  String
+  status      ShipmentStatus
+  description String
+  location    String?
+  occurredAt  DateTime       @default(now())
+  createdAt   DateTime       @default(now())
+  shipment    Shipment       @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+  @@index([shipmentId, occurredAt])
+}
+
+model PaymentRecord {
+  id                String        @id @default(cuid())
+  shipmentId        String
+  provider          String
+  providerReference String?       @unique
+  amount            Decimal       @db.Decimal(12, 2)
+  currency          String        @default("BDT")
+  status            PaymentStatus @default(PENDING)
+  paidAt            DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  shipment          Shipment      @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+  @@index([shipmentId, createdAt])
+  @@index([status, createdAt])
+}

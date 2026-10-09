@@ -8,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import { CloseCircle } from "iconsax-react";
 import Social from "./footer/Social";
 import NavList from "./navbar/NavList";
+import Profile from "./Profile";
 
 const MobileNavs = ({ transparent = false }: { transparent?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -55,6 +56,9 @@ const MobileNavs = ({ transparent = false }: { transparent?: boolean }) => {
               transparent={transparent}
               className={"flex-col items-start !text-2xl gap-3"}
             />
+          </div>
+          <div className="mt-8">
+            <Profile />
           </div>
           <div className="flex justify-center mt-12">
             <Social />

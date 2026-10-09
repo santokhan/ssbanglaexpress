@@ -1,7 +1,7 @@
 "use server";
 
 import { randomUUID } from "node:crypto";
-import { saveContactMessage, saveQuote, type ContactMessage, type QuoteRequest } from "@/lib/request-store";
+import { prisma } from "@/lib/prisma";
 
 type QuoteInput = Record<string, unknown> & { type?: unknown; consent?: unknown };
 type ContactInput = Record<string, unknown>;
@@ -38,13 +38,17 @@ export async function submitQuote(input: QuoteInput): Promise<ActionResult> {
   if (input.consent !== true) return { ok: false, error: "Consent is required to submit a request." };
 
   const id = `SSB-${new Date().toISOString().slice(0, 10).replaceAll("-", "")}-${randomUUID().slice(0, 6).toUpperCase()}`;
-  const quote: QuoteRequest = {
-    id, type, receivedAt: new Date().toISOString(), fullName: data.fullName!, email: data.email!, phone: data.phone!,
+  try {
+    await prisma.quoteRequest.create({ data: {
+    id, type, receivedAt: new Date(), fullName: data.fullName!, email: data.email!, phone: data.phone!,
     origin: data.origin!, destination: data.destination!, itemType: data.itemType!, weight: data.weight!,
     cartons: data.cartons!, dimensions: data.dimensions!, quantity: data.quantity!, sizeRange: data.sizeRange!,
     material: data.material!, targetPrice: data.targetPrice!, details: data.details!,
-  };
-  saveQuote(quote);
+    } });
+  } catch (error) {
+    console.error("Quote request save failed", error);
+    return { ok: false, error: "We could not save your request. Please try again." };
+  }
   return { ok: true, id };
 }
 
@@ -58,7 +62,11 @@ export async function submitContact(input: ContactInput): Promise<ActionResult> 
   if (contactFields.some((field) => !data[field])) return { ok: false, error: "Please complete all required fields." };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email!)) return { ok: false, error: "Enter a valid email address." };
   const id = `SSB-C-${randomUUID().slice(0, 8).toUpperCase()}`;
-  const message: ContactMessage = { id, receivedAt: new Date().toISOString(), firstName: data.firstName!, lastName: data.lastName!, email: data.email!, phone: data.phone!, message: data.message! };
-  saveContactMessage(message);
+  try {
+    await prisma.contactMessage.create({ data: { id, receivedAt: new Date(), firstName: data.firstName!, lastName: data.lastName!, email: data.email!, phone: data.phone!, message: data.message! } });
+  } catch (error) {
+    console.error("Contact message save failed", error);
+    return { ok: false, error: "We could not save your message. Please try again." };
+  }
   return { ok: true, id };
 }

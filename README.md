@@ -40,3 +40,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 https://themeperch.net/html/logistip/home-1.html
 https://themeperch.net/html/logistip/home-3.html
 https://www.dotexpresscorp.com/
+
+## Supabase database and authentication
+
+Copy `.env.example` to `.env` (or add the variables to your existing ignored `.env`). Set `DATABASE_URL` to the PostgreSQL connection string from Supabase, `SESSION_SECRET` to a random secret of at least 32 characters, and `NEXT_PUBLIC_GOOGLE_CLIENT_ID` to your Google OAuth 2.0 Web client ID. Keep the database URL and session secret server-only; do not use a `NEXT_PUBLIC_` prefix for them. Add your deployed site origins to the OAuth client's authorized JavaScript origins.
+
+Install the schema in the Supabase database with `npm run db:push`, then start the app. Prisma stores users, quote requests, and contact messages. Signup supports email/password and Google sign-in; passwords are hashed and sessions use an HTTP-only cookie. Existing Supabase data is not deleted by `db:push`.
+
+Password recovery uses server actions, stores one-time reset tokens in the database, and sends reset links through Gmail SMTP. Configure `SMTP_USER` and `SMTP_APP_PASSWORD` before enabling recovery in production. Reset links use the origin of the request.

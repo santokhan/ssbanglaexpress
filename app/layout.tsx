@@ -39,9 +39,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex min-h-svh flex-col`}>
         <Header />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
         <FacebookMessenger />
       </body>

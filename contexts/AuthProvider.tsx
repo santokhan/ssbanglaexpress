@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import AuthContext from "./AuthContext"
 import type { AuthUser } from "./AuthContext"
+import { getCurrentUserAction } from "@/actions/auth/session"
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<AuthUser | null>(null)
@@ -12,17 +13,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         const controller = new AbortController()
         async function fetchUser() {
             try {
-                const response = await fetch('/api/auth/me', { signal: controller.signal })
-                if (!response.ok) {
-                    setUser(null)
-                    return
-                }
-                const data: unknown = await response.json()
-                if (data && typeof data === "object" && "user" in data) {
-                    setUser((data as { user: AuthUser | null }).user)
-                } else {
-                    setUser(data as AuthUser)
-                }
+                const currentUser = await getCurrentUserAction()
+                if (!controller.signal.aborted) setUser(currentUser as AuthUser | null)
             } catch {
                 if (!controller.signal.aborted) setUser(null)
             } finally {

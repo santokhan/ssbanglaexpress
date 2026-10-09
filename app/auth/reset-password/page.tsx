@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from "react"
+import { resetPassword } from "@/actions/auth/password-recovery"
 
 const ResetPasswordPage = () => {
     const [status, setStatus] = useState<"loading" | "success" | "error" | null>(null)
@@ -23,15 +24,10 @@ const ResetPasswordPage = () => {
         setMessage("")
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL
             const token = new URLSearchParams(window.location.search).get("token")
-            if (!apiUrl || !token) throw new Error("This reset link is invalid or password recovery is not configured.")
-            const response = await fetch(`${apiUrl.replace(/\/$/, "")}/v1/reset-password`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token, password }),
-            })
-            if (!response.ok) throw new Error("This reset link may have expired. Request a new link and try again.")
+            if (typeof password !== "string" || typeof token !== "string") throw new Error("This reset link is invalid.")
+            const result = await resetPassword({ token, password })
+            if (!result.ok) throw new Error(result.message)
 
             setStatus("success")
             setMessage("Your password has been reset successfully.")
@@ -43,11 +39,12 @@ const ResetPasswordPage = () => {
     }
 
     return (
-        <div className="min-h-svh flex flex-col items-center justify-evenly bg-gray-50 px-4">
-            <div className="max-w-md w-full space-y-8 p-8 bg-white shadow-xl rounded-2xl">
+        <main className="auth-page">
+            <div className="auth-card space-y-7">
                 <div className="text-center">
-                    <h2 className="text-3xl font-extrabold text-gray-900">Reset your password</h2>
-                    <p className="mt-2 text-sm text-gray-600">Enter your new password below.</p>
+                    <span className="mb-3 inline-flex rounded-full bg-[#b81e46]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[.18em] text-[#a51a40]">Secure your account</span>
+                    <h1 className="auth-heading">Reset your password</h1>
+                    <p className="auth-copy">Choose a new password to get back to your account.</p>
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -62,6 +59,8 @@ const ResetPasswordPage = () => {
                                 type="password"
                                 autoComplete="new-password"
                                 required
+                                minLength={8}
+                                maxLength={72}
                                 className="default"
                             />
                         </div>
@@ -89,7 +88,7 @@ const ResetPasswordPage = () => {
 
                 {message && (
                     <p
-                        className={`text-center mt-4 ${status === "error" ? "text-red-600" : "text-green-600"
+                        className={`mt-4 rounded-xl p-3 text-center text-sm ${status === "error" ? "bg-rose-50 text-rose-700" : "bg-emerald-50 text-emerald-700"
                             }`}
                     >
                         {message}
@@ -97,13 +96,13 @@ const ResetPasswordPage = () => {
                 )}
 
                 <div className="text-center">
-                    <a href="/signin" className="text-blue-600 hover:underline text-sm">
+                    <a href="/auth/signin" className="auth-link text-sm">
                         Back to Sign In
                     </a>
                 </div>
             </div>
             <div></div>
-        </div>
+        </main>
     )
 }
 

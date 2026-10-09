@@ -5,17 +5,17 @@ const questions = [
   {
     question: "How can I send a parcel with SS Bangla Express?",
     answer:
-      "Use the tracking panel in the hero section or contact us via WhatsApp to book pickup from Dhaka and deliver across Bangladesh or internationally.",
+      "Send us a quote request with your origin, destination, parcel weight, carton count, and a description of the contents. Our team will confirm the available service and price before you book.",
   },
   {
-    question: "Do you offer cash on delivery?",
+    question: "What information should I include in a quote request?",
     answer:
-      "Yes, we offer COD for customer deliveries. Merchants can choose this option during booking and receive payment through our secure collection process.",
+      "Include the origin and destination, parcel weight, number of cartons, dimensions if available, and a brief description of the contents. This helps our team prepare an accurate quote.",
   },
   {
     question: "What areas do you cover?",
     answer:
-      "We cover Dhaka city and all major districts across Bangladesh, with international routes to UK, Europe, USA, and Australia.",
+      "Service availability depends on the destination and shipment details. Contact our team with your route and we’ll confirm the options available.",
   },
 ];
 

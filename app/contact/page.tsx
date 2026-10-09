@@ -1,4 +1,5 @@
 import MapAndForm from "@/components/common/MapAndForm";
+import ContactChannels from "@/components/common/ContactChannels";
 
 export const metadata = {
   title: "Contact | SS Bangla Express",
@@ -16,6 +17,9 @@ function ContactPage() {
         </div>
       </section>
       <MapAndForm />
+      <section className="container mx-auto px-4 pb-12">
+        <ContactChannels />
+      </section>
     </main>
   );
 }

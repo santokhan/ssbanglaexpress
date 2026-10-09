@@ -4,14 +4,14 @@ import SectionTitle from "@/components/common/SectionTitle";
 
 const tools = [
   {
-    title: "Rate calculator",
-    description: "Request a confirmed quote for your parcel, route, and delivery requirements.",
+    title: "Shipping quote",
+    description: "Share your parcel details and request a confirmed price for your route.",
     href: "/rate-calculator",
-    action: "Calculate now",
+    action: "Request a quote",
   },
   {
-    title: "Track shipment",
-    description: "Share your tracking reference with our team to ask for a shipment update.",
+    title: "Shipment update",
+    description: "Contact our team with your tracking reference to ask about a shipment.",
     href: "/contact",
     action: "Ask for an update",
   },
@@ -55,14 +55,14 @@ export default function Page() {
                 Plan your shipment with the right tools, fast.
               </SectionTitle>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Use SS Bangla Express tools to estimate rates, track consignments, locate service points, and get customs guidance for every parcel.
+                Request a route specific shipping quote, ask our team for a shipment update, and get guidance for your parcel.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/rate-calculator"
                   className="inline-flex items-center rounded-full bg-[#b81e46] px-6 py-3 text-sm font-semibold text-white shadow hover:bg-[#7d162f]"
                 >
-                  Open rate calculator
+                  Request a shipping quote
                 </Link>
                 <Link
                   href="/contact"
@@ -79,7 +79,7 @@ export default function Page() {
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b81e46]">Most useful</p>
                   <h3 className="mt-3 text-xl font-semibold text-slate-900">Quick access to digital tools</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Everything you need to move parcels smoothly, from quotes to documentation and support.
+                    Start a quote request or contact our team for shipment and customs support.
                   </p>
                 </div>
                 <div className="grid gap-4">
@@ -87,6 +87,7 @@ export default function Page() {
                     <div key={tool.title} className="rounded-3xl bg-white p-5 shadow-sm">
                       <p className="text-sm uppercase tracking-[0.24em] text-slate-400">{tool.title}</p>
                       <p className="mt-3 text-sm leading-6 text-slate-700">{tool.description}</p>
+                      <Link href={tool.href} className="mt-4 inline-flex font-semibold text-[#b81e46] underline-offset-4 hover:underline">{tool.action} <span aria-hidden="true" className="ml-2">→</span></Link>
                     </div>
                   ))}
                 </div>

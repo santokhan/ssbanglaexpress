@@ -2,7 +2,7 @@
 
 import { createContext, type Dispatch, type SetStateAction } from "react";
 
-export type AuthUser = { name?: string; username?: string; email?: string };
+export type AuthUser = { name?: string; email?: string; image?: string | null; picture?: string | null };
 export type AuthContextValue = {
   user: AuthUser | null;
   setUser: Dispatch<SetStateAction<AuthUser | null>>;

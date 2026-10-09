@@ -10,10 +10,14 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     const router = useRouter()
 
     useEffect(() => {
-        if (!isLoading && !user) router.replace("/signin")
+        if (!isLoading && !user) router.replace("/auth/signin")
     }, [isLoading, user, router])
 
-    return !isLoading && user ? children : null
+    if (isLoading || !user) {
+        return <div aria-busy="true" className="min-h-[var(--height-main)] bg-[#f7f8fa]" />
+    }
+
+    return children
 }
 
 export default ProtectedRoute
