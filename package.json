@@ -10,7 +10,8 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "deploy": "vercel deploy",
-    "deploy -p": "vercel deploy --prod"
+    "deploy -p": "vercel deploy --prod",
+    "prebuild": "prisma generate"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
