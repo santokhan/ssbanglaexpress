@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import useAuth from "@/hooks/useAuth"
+import AvatarImage from "@/components/common/AvatarImage"
 
 const Profile = () => {
     const { user, isLoading } = useAuth();
@@ -20,23 +21,9 @@ const Profile = () => {
     }
 
     const href = '/profile'
-    const avatar = user?.avatarUrl
-    const initials = (user?.name || user?.email || '?')
-        .trim()
-        .split(/\s+/)
-        .slice(0, 2)
-        .map((part) => part[0])
-        .join('')
-        .toUpperCase()
-
     return (
         <Link href={href} className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-gray-200 text-xs font-semibold text-gray-700" title={user.name || 'Profile'} aria-label={user.name ? `${user.name}'s profile` : 'Profile'}>
-            {avatar ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={avatar} alt="" className="size-full object-cover" />
-            ) : (
-                <span aria-hidden="true">{initials}</span>
-            )}
+            <AvatarImage src={user?.avatarUrl} className="size-full object-cover" />
         </Link>
     )
 }

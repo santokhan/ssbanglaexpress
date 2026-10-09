@@ -12,6 +12,7 @@ export default function Sitemap(): MetadataRoute.Sitemap {
         "/rate-calculator",
         "/services",
         "/team",
+        "/track",
         "/terms",
         "/tools",
         "/privacy",

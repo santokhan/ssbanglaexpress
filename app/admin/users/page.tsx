@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AvatarImage from "@/components/common/AvatarImage";
 import { prisma } from "@/lib/prisma";
 
 type SearchParams = Promise<{ q?: string; page?: string }>;
@@ -86,12 +87,7 @@ export default async function AdminUsersPage({
               {users.map((user) => (
                 <div key={user.id} className="grid gap-3 p-4 sm:grid-cols-[1.5fr_1.4fr_0.7fr_0.8fr_0.8fr] sm:items-center sm:px-5">
                   <div className="flex min-w-0 items-center gap-3">
-                    {user.avatarUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={user.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
-                    ) : (
-                      <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-50 text-sm font-bold text-[#a61940]">{user.name.slice(0, 1).toUpperCase()}</span>
-                    )}
+                    <AvatarImage src={user.avatarUrl} className="h-10 w-10 rounded-full object-cover" />
                     <div className="min-w-0">
                       <p className="truncate font-semibold text-slate-900">{user.name}</p>
                       <p className="truncate text-sm text-slate-500">{user.email}</p>
