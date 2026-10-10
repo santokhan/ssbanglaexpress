@@ -43,7 +43,7 @@ https://www.dotexpresscorp.com/
 
 ## Supabase database and authentication
 
-Copy `.env.example` to `.env` (or add the variables to your existing ignored `.env`). Set `DATABASE_URL` to the PostgreSQL connection string from Supabase, `SESSION_SECRET` to a random secret of at least 32 characters, and `NEXT_PUBLIC_GOOGLE_CLIENT_ID` to your Google OAuth 2.0 Web client ID. Keep the database URL and session secret server-only; do not use a `NEXT_PUBLIC_` prefix for them. Add your deployed site origins to the OAuth client's authorized JavaScript origins.
+Copy `.env.example` to `.env` (or add the variables to your existing ignored `.env`). Set `DATABASE_URL` to the PostgreSQL connection string from Supabase, `SESSION_SECRET` to a random secret of at least 32 characters, and `NEXT_PUBLIC_GOOGLE_CLIENT_ID` to your Google OAuth 2.0 Web client ID. Keep the database URL and session secret server-only; do not use a `NEXT_PUBLIC_` prefix for them. Add your deployed site origins to the OAuth client's authorized JavaScript origins. Add initial administrator emails to `ADMIN_EMAILS` and bootstrap superadmin emails to `SUPERADMIN_EMAILS`; superadmins can change account roles from the **Admin > Users** page. New accounts always start as `USER`.
 
 Install the schema in the Supabase database with `npm run db:push`, then start the app. Prisma stores users, quote requests, and contact messages. Signup supports email/password and Google sign-in; passwords are hashed and sessions use an HTTP-only cookie. Existing Supabase data is not deleted by `db:push`.
 

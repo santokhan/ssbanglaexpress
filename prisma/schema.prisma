@@ -42,6 +42,7 @@ enum PaymentStatus {
 enum UserRole {
   USER
   ADMIN
+  SUPERADMIN
 }
 
 model User {

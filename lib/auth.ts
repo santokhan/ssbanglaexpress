@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { isShipmentAdmin } from "@/lib/admin";
+import { effectiveRole } from "@/lib/admin";
 
 const COOKIE_NAME = "ssbangla_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
@@ -75,7 +75,8 @@ export async function getSessionUser() {
       },
     });
     if (!session?.user) return null;
-    return { ...session.user, isAdmin: isShipmentAdmin(session.user) };
+    const role = effectiveRole(session.user);
+    return { ...session.user, role, isAdmin: role !== "USER" };
   } catch {
     return null;
   }
