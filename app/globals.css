@@ -45,6 +45,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  body>section,
+  body>main>section,
+  section.section {
+    @apply py-16 lg:py-20 space-y-14;
+  }
 }
 
 @layer utilities {
@@ -54,7 +60,8 @@
   }
 
   .auth-card {
-    @apply relative z-10 w-full max-w-md rounded-[1.75rem] border border-white/80 bg-white/95 p-7 shadow-[0_24px_80px_-32px_rgba(37,35,32,.28)] backdrop-blur sm:p-10;
+    box-shadow: 0 24px 80px -32px rgba(37, 35, 32, .28);
+    @apply relative z-10 w-full max-w-md rounded-[1.75rem] border border-white/80 bg-white/95 p-7 backdrop-blur sm:p-10;
   }
 
   .auth-heading {
@@ -73,9 +80,7 @@
     @apply mt-2 rounded-xl border-slate-200 bg-slate-50/70 py-3 transition placeholder:text-slate-400 focus:border-[#b81e46] focus:bg-white focus:ring-4 focus:ring-[#b81e46]/10;
   }
 
-  section.section {
-    @apply py-16 lg:py-20 space-y-14;
-  }
+
 
   input.default,
   select.default,

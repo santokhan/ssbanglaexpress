@@ -29,8 +29,8 @@ const businesses = [
     name: "SS Bangla Global Trade",
     category: "Wholesale & trade",
     description: "Wholesale and export or import support for your business requirements.",
-    image: "/images/business-trade.svg",
-    imageAlt: "Illustration of cartons prepared for wholesale trade",
+    image: cargoImage,
+    imageAlt: "Shipping containers stacked at a seaport for international trade",
     Icon: Boxes,
   },
   {
@@ -38,8 +38,8 @@ const businesses = [
     name: "Bongo Apparel Ltd",
     category: "Private label",
     description: "Apparel manufacturing support for brands building their own product range.",
-    image: "/images/business-apparel.svg",
-    imageAlt: "Illustration of a shirt representing private label apparel production",
+    image: "/images/business-apparel-manufacturing.jpg",
+    imageAlt: "Finished garments displayed for an apparel brand",
     Icon: Shirt,
   },
   {
@@ -47,8 +47,8 @@ const businesses = [
     name: "SS Bangla Tex Sourcing",
     category: "Textile sourcing",
     description: "Knit and woven product sourcing for your apparel and textile needs.",
-    image: "/images/business-textiles.svg",
-    imageAlt: "Illustration of fabric rolls representing textile sourcing",
+    image: "/images/business-textile-sourcing.jpg",
+    imageAlt: "Knit garments on hangers representing apparel and textile sourcing",
     Icon: ShoppingBag,
   },
 ];

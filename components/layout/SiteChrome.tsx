@@ -12,7 +12,7 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <>
       {!isAdmin && <Header />}
-      <div className="flex-1">{children}</div>
+      {children}
       {!isAdmin && <Footer />}
     </>
   );

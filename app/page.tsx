@@ -6,6 +6,7 @@ import Hero from "@/components/ui/hero/Hero";
 import Services from "@/components/ui/services/Services";
 import YoutubeVideo from "@/components/ui/youtube/YoutubeVideo";
 import ShippingGuide from "@/components/ui/home/ShippingGuide";
+import FacebookPagePreview from "@/components/ui/home/FacebookPagePreview";
 
 export async function generateMetadata() {
   return {
@@ -23,6 +24,7 @@ export default function Home() {
       <Services />
       <ShippingGuide />
       <YoutubeVideo />
+      <FacebookPagePreview />
       <FAQ />
       <Team />
       <MapAndForm />
