@@ -21,7 +21,7 @@ const questions = [
 
 const FAQ = () => {
   return (
-    <section className="section relative isolate overflow-hidden bg-gradient-to-b from-rose-50/70 via-white to-white">
+    <section className="section relative isolate overflow-hidden bg-gradient-to-b from-rose-50/70 via-white to-white" id="components-ui-faq-faq-section-1">
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-8 -z-10 size-80 rounded-full bg-[#b81e46]/[0.05] blur-3xl" />
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">

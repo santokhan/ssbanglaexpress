@@ -55,7 +55,7 @@ export default async function QuoteDetailPage({
         </header>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-quotes-quote-id-page-section-1">
             <h2 className="text-lg font-bold text-slate-900">Request details</h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               <Info title="Request type" value={label(quote.type)} />
@@ -86,7 +86,7 @@ export default async function QuoteDetailPage({
           </section>
 
           <div className="space-y-5">
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-quotes-quote-id-page-section-2">
               <h2 className="text-lg font-bold text-slate-900">Customer</h2>
               <div className="mt-5 space-y-4">
                 <Info title="Name" value={quote.fullName} />
@@ -109,7 +109,7 @@ export default async function QuoteDetailPage({
             </section>
 
             {quote.shipment && (
-              <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-quotes-quote-id-page-section-3">
                 <h2 className="text-lg font-bold text-slate-900">Linked shipment</h2>
                 <Link href={`/admin/shipments/${quote.shipment.id}`} className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-4 transition hover:bg-slate-100">
                   <span>

@@ -72,7 +72,7 @@ export default async function TrackShipmentPage({
         </form>
 
         {tracking && !shipment && (
-          <section aria-live="polite" className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-center">
+          <section aria-live="polite" className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-center" id="app-track-page-section-1">
             <h2 className="font-bold text-slate-900">We couldn’t find that tracking number</h2>
             <p className="mt-1 text-sm leading-6 text-slate-600">Check the number and try again. If you need help, <Link href="/contact" className="font-semibold text-[#a61940] underline underline-offset-2">contact our team</Link>.</p>
           </section>
@@ -80,7 +80,7 @@ export default async function TrackShipmentPage({
 
         {shipment && (
           <div className="mt-7 space-y-5" aria-live="polite">
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" id="app-track-page-section-2">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Tracking number</p>
@@ -94,7 +94,7 @@ export default async function TrackShipmentPage({
               {shipment.deliveredAt && <p className="mt-3 text-sm text-emerald-700">Delivered {date(shipment.deliveredAt)}</p>}
             </section>
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="tracking-history-heading">
+            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="tracking-history-heading" id="app-track-page-section-3">
               <h2 id="tracking-history-heading" className="text-lg font-bold text-slate-900">Tracking history</h2>
               {shipment.trackingEvents.length ? (
                 <ol className="mt-5 space-y-0">

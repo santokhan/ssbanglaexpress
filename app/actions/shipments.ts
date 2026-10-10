@@ -6,8 +6,8 @@ import { getSessionUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendShipmentBookingEmail } from "@/lib/email";
 
-const fields = ["customerName", "customerEmail", "customerPhone", "origin", "destination", "pickupAddress", "deliveryAddress", "serviceType", "packageDescription", "weight", "cartons", "specialInstructions"] as const;
-const limits: Record<(typeof fields)[number], number> = { customerName: 100, customerEmail: 254, customerPhone: 30, origin: 80, destination: 80, pickupAddress: 500, deliveryAddress: 500, serviceType: 50, packageDescription: 500, weight: 20, cartons: 5, specialInstructions: 1000 };
+const fields = ["customerName", "customerEmail", "customerPhone", "origin", "destination", "pickupAddress", "deliveryAddress", "serviceType", "productType", "packageDescription", "weight", "cartons", "specialInstructions"] as const;
+const limits: Record<(typeof fields)[number], number> = { customerName: 100, customerEmail: 254, customerPhone: 30, origin: 80, destination: 80, pickupAddress: 500, deliveryAddress: 500, serviceType: 50, productType: 100, packageDescription: 500, weight: 20, cartons: 5, specialInstructions: 1000 };
 
 export async function createShipmentBooking(formData: FormData) {
   const data = Object.fromEntries(fields.map((key) => [key, String(formData.get(key) ?? "").trim()]));
@@ -23,7 +23,7 @@ export async function createShipmentBooking(formData: FormData) {
     await prisma.shipment.create({ data: {
       trackingNumber, userId: user?.id, customerName: data.customerName, customerEmail: data.customerEmail.toLowerCase(), customerPhone: data.customerPhone,
       serviceType: data.serviceType, origin: data.origin, destination: data.destination, pickupAddress: data.pickupAddress, deliveryAddress: data.deliveryAddress,
-      packageDescription: data.packageDescription, weight, weightUnit: "kg", cartons, specialInstructions: data.specialInstructions,
+      productType: data.productType, packageDescription: data.packageDescription, weight, weightUnit: "kg", cartons, specialInstructions: data.specialInstructions,
       status: "BOOKED", trackingEvents: { create: { status: "BOOKED", description: "Booking received. Our team will review pickup and delivery details." } },
     } });
   } catch (error) {
@@ -38,6 +38,7 @@ export async function createShipmentBooking(formData: FormData) {
       serviceType: data.serviceType,
       origin: data.origin,
       destination: data.destination,
+      productType: data.productType,
       packageDescription: data.packageDescription,
       weight,
       cartons,

@@ -15,7 +15,7 @@ const Page = () => {
       <div className="container mx-auto flex justify-end px-4 pt-5"><CopyPageContent contentId="share-page-content" /></div>
       <AboutUs />
       <Team />
-      <section className="section"><BannerBottom /></section>
+      <section className="section" id="app-about-page-section-1"><BannerBottom /></section>
     </div>
   );
 };

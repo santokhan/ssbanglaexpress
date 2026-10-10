@@ -42,7 +42,7 @@ const groupBusinesses = [
 export default function AboutUs() {
   return (
     <div className="overflow-hidden bg-white">
-      <section className="relative isolate overflow-hidden bg-[#faf7f5]">
+      <section className="relative isolate overflow-hidden bg-[#faf7f5]" id="components-ui-about-aboutus-section-1">
         <div className="absolute -right-24 -top-24 -z-10 size-80 rounded-full bg-[#b81e46]/[0.06] blur-3xl" />
         <div className="container mx-auto grid items-center gap-12 px-4 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
           <div className="max-w-2xl">
@@ -87,7 +87,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-20 sm:py-24">
+      <section className="container mx-auto px-4 py-20 sm:py-24" id="components-ui-about-aboutus-section-2">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#b81e46]">What we do</p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Shipping support for different kinds of journeys.</h2>
@@ -129,7 +129,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-20 sm:py-24">
+      <section className="container mx-auto px-4 py-20 sm:py-24" id="components-ui-about-aboutus-section-3">
         <div className="mx-auto max-w-5xl rounded-[2rem] bg-slate-950 px-6 py-10 text-white sm:px-10 sm:py-12">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-rose-300">Part of a wider group</p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Connected expertise, distinct teams.</h2>

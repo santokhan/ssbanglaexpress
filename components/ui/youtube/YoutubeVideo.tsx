@@ -24,7 +24,7 @@ export default function YoutubeVideo() {
   if (!embedUrl) return null;
 
   return (
-    <section aria-label="Featured video" className="bg-white py-16 sm:py-20">
+    <section aria-label="Featured video" className="bg-white py-16 sm:py-20" id="components-ui-youtube-youtubevideo-section-1">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-slate-950 shadow-xl">
           <iframe

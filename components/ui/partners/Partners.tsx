@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Partners = () => {
   return (
-    <section className="section">
+    <section className="section" id="components-ui-partners-partners-section-1">
       <div className="max-w-4xl mx-auto px-4">
         <SectionTitle className="text-center">Our Partners</SectionTitle>
         <p className="text-center">

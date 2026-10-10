@@ -8,7 +8,7 @@ const topics = [
 
 export default function BlogsSection() {
   return (
-    <section className="bg-slate-50 py-16 sm:py-20">
+    <section className="bg-slate-50 py-16 sm:py-20" id="components-ui-blogs-blogssection-section-1">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-[#b81e46]">Helpful resources</span>

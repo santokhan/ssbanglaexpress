@@ -37,7 +37,7 @@ export default function TermsPage() {
         <article className="mx-auto mt-10 max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
           <p className="leading-7 text-slate-600">The details confirmed for your shipment, together with any service-specific conditions shared by our team, apply to your booking. Please contact us before sending if you need clarification about a route or item.</p>
           <div className="mt-8 divide-y divide-slate-100">
-            {sections.map((section) => <section key={section.title} className="py-6 first:pt-0 last:pb-0">
+            {sections.map((section, index) => <section key={section.title} className="py-6 first:pt-0 last:pb-0" id={`terms-section-${index + 1}`}>
               <h2 className="text-lg font-bold text-slate-900">{section.title}</h2>
               <p className="mt-2 leading-7 text-slate-600">{section.text}</p>
             </section>)}

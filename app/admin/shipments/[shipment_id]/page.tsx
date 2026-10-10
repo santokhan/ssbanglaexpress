@@ -74,7 +74,7 @@ export default async function ShipmentDetailPage({
           </span>
         </header>
         <div className="mt-5 grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-shipments-shipment-id-page-section-1">
             <h2 className="text-lg font-bold text-slate-900">
               Booking information
             </h2>
@@ -90,6 +90,7 @@ export default async function ShipmentDetailPage({
               <Info
                 title="Parcel"
                 lines={[
+                  `Product type: ${shipment.productType || "—"}`,
                   shipment.packageDescription,
                   `${shipment.weight?.toString() ?? "—"} ${shipment.weightUnit} · ${shipment.cartons} cartons`,
                 ]}
@@ -129,7 +130,7 @@ export default async function ShipmentDetailPage({
               />
             </div>
           </section>
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-shipments-shipment-id-page-section-2">
             <h2 className="text-lg font-bold text-slate-900">
               Add tracking update
             </h2>
@@ -179,7 +180,7 @@ export default async function ShipmentDetailPage({
             </form>
           </section>
         </div>
-        <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-shipments-shipment-id-page-section-3">
           <div className="flex items-end justify-between">
             <div>
               <h2 className="text-lg font-bold text-slate-900">
@@ -234,7 +235,7 @@ export default async function ShipmentDetailPage({
           )}
         </section>
         {shipment.payments.length > 0 && (
-          <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6" id="app-admin-shipments-shipment-id-page-section-4">
             <h2 className="text-lg font-bold text-slate-900">Payments</h2>
             <div className="mt-4 divide-y divide-slate-100">
               {shipment.payments.map((payment) => (

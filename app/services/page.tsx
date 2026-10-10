@@ -4,7 +4,7 @@ import Services from "@/components/ui/services/Services";
 export default function Page() {
   return (
     <div>
-      <section className="section">
+      <section className="section" id="app-services-page-section-1">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-[#b81e46]/10 px-4 py-1 text-sm font-semibold text-[#b81e46]">
@@ -22,7 +22,7 @@ export default function Page() {
 
       <Services />
 
-      <section className="section">
+      <section className="section" id="app-services-page-section-2">
         <BannerBottom />
       </section>
     </div>

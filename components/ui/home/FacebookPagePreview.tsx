@@ -9,7 +9,7 @@ const backdropTiles = ["F8", "▶", "✦", "◉", "f", "↗", "✉", "◎", "⌁
 
 export default function FacebookPagePreview() {
   return (
-    <section aria-labelledby="facebook-preview-title" className="relative isolate space-y-0 overflow-hidden bg-white py-16 sm:py-20">
+    <section aria-labelledby="facebook-preview-title" className="relative isolate space-y-0 overflow-hidden bg-white py-16 sm:py-20" id="components-ui-home-facebookpagepreview-section-1">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-between overflow-hidden px-1 opacity-55 sm:px-5">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
           {backdropTiles.slice(0, 6).map((tile, index) => (

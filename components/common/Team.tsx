@@ -30,7 +30,7 @@ const teamMembers = [
 ];
 
 const Team = () => (
-  <section className="section relative isolate overflow-hidden bg-[#faf8f7]">
+  <section className="section relative isolate overflow-hidden bg-[#faf8f7]" id="components-common-team-section-1">
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
       <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#b81e46]/15 bg-white/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-[#a51b40] shadow-sm">
@@ -40,8 +40,9 @@ const Team = () => (
         <SectionTitle className="text-center text-4xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl">
           Meet our <span className="text-[#b81e46]">team</span>
         </SectionTitle>
-        <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-          The SS Bangla Express team brings local Dhaka pickup support, customs expertise and international shipping coordination to every shipment.
+        <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+          The SS Bangla Express team brings local Dhaka pickup support, customs
+          expertise and international shipping coordination to every shipment.
         </p>
       </div>
 
@@ -64,7 +65,9 @@ const Team = () => (
             </div>
 
             <div className="px-4 pb-4 pt-5 sm:px-5">
-              <h3 className="text-xl font-bold tracking-tight text-slate-950">{member.name}</h3>
+              <h3 className="text-xl font-bold tracking-tight text-slate-950">
+                {member.name}
+              </h3>
               <p className="mt-2 inline-flex rounded-full bg-[#b81e46]/[0.08] px-3 py-1 text-xs font-semibold text-[#a51b40]">
                 {member.description}
               </p>

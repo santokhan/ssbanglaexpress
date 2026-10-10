@@ -8,7 +8,7 @@ const Hero = () => {
             style={{ backgroundImage }}
         >
             <div className="bg-white/20+">
-                <section className="section space-y-8 min-h-[40vh] flex items-center">
+                <section className="section space-y-8 min-h-[40vh] flex items-center" id="components-ui-about-hero-section-1">
                     <div className="container mx-auto px-4">
                         <SectionTitle>About Us</SectionTitle>
                     </div>

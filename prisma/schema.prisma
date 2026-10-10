@@ -162,6 +162,7 @@ model Shipment {
   destination        String
   pickupAddress      String          @default("")
   deliveryAddress    String          @default("")
+  productType        String          @default("")
   packageDescription String          @default("")
   cartons            Int             @default(1)
   specialInstructions String         @default("")

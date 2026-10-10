@@ -51,7 +51,7 @@ const tools = [
 export default function Page() {
   return (
     <div>
-      <section className="section">
+      <section className="section" id="app-tools-page-section-1">
         <div className="container mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center">
             <div>
@@ -109,7 +109,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section bg-slate-50">
+      <section className="section bg-slate-50" id="app-tools-page-section-2">
         <div className="container mx-auto px-4">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-2xl">
             <div className="grid gap-6 lg:grid-cols-3">
@@ -134,7 +134,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="app-tools-page-section-3">
         <BannerBottom />
       </section>
     </div>

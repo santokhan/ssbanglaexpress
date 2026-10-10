@@ -18,7 +18,7 @@ const ProfilePage = ({ user }: { user: ProfileUser }) => {
 
     return (
         <main className="min-h-[var(--height-main)] bg-[#f7f8fa] pb-16">
-            <section className="relative overflow-hidden bg-[#171923] text-white">
+            <section className="relative overflow-hidden bg-[#171923] text-white" id="app-user-profile-profileclient-section-1">
                 <div className="absolute inset-0 opacity-30" aria-hidden="true">
                     <div className="absolute -right-16 -top-44 h-[27rem] w-[27rem] rounded-full border border-white/15" />
                     <div className="absolute -right-4 -top-32 h-[23rem] w-[23rem] rounded-full border border-white/10" />
@@ -50,7 +50,7 @@ const ProfilePage = ({ user }: { user: ProfileUser }) => {
             <Container className="relative -mt-12">
                 <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(280px,0.8fr)]">
                     <div className="space-y-6">
-                        <section className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.3)] sm:p-8" aria-labelledby="shipments-heading">
+                        <section className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_35px_-25px_rgba(15,23,42,0.3)] sm:p-8" aria-labelledby="shipments-heading" id="app-user-profile-profileclient-section-2">
                             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                                 <div className="flex items-start gap-4">
                                     <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-[#b81e46]"><Box size={23} /></span>
@@ -65,7 +65,7 @@ const ProfilePage = ({ user }: { user: ProfileUser }) => {
                             </div>
                         </section>
 
-                        <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_12px_35px_-25px_rgba(15,23,42,0.3)]" aria-labelledby="account-heading">
+                        <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_12px_35px_-25px_rgba(15,23,42,0.3)]" aria-labelledby="account-heading" id="app-user-profile-profileclient-section-3">
                             <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5 sm:px-8">
                                 <div><p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Account details</p><h2 id="account-heading" className="text-lg font-bold text-slate-900">Your information</h2></div>
                                 <span className="flex size-10 items-center justify-center rounded-full bg-slate-100 text-slate-500"><UserRound size={19} /></span>

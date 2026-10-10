@@ -5,7 +5,7 @@ import { contactDetails } from "@/lib/contact-details";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#fbf8f6]">
+    <section className="relative isolate overflow-hidden bg-[#fbf8f6]" id="components-ui-hero-hero-section-1">
       <div className="pointer-events-none absolute -right-40 -top-48 -z-10 size-[34rem] rounded-full bg-[#b81e46]/[0.06] blur-3xl" />
       <div className="container mx-auto grid min-h-[620px] items-center gap-12 px-4 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
         <div className="max-w-2xl">

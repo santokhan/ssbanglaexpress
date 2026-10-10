@@ -20,7 +20,7 @@ export default function Page() {
         </div>
 
         <div className="mt-12 space-y-12">
-          <section>
+          <section id="app-privacy-page-section-1">
             <h2 className="text-2xl font-semibold text-slate-900">Information we collect</h2>
             <div className="mt-4 space-y-4 text-slate-600">
               <p>
@@ -35,7 +35,7 @@ export default function Page() {
             </div>
           </section>
 
-          <section>
+          <section id="app-privacy-page-section-2">
             <h2 className="text-2xl font-semibold text-slate-900">How we use your data</h2>
             <div className="mt-4 space-y-4 text-slate-600">
               <p>
@@ -50,14 +50,14 @@ export default function Page() {
             </div>
           </section>
 
-          <section>
+          <section id="app-privacy-page-section-3">
             <h2 className="text-2xl font-semibold text-slate-900">Cookies and analytics</h2>
             <p className="mt-4 text-slate-600">
               We use cookies and similar technologies to improve website performance, remember your preferences, and provide analytics for our service pages. This data is aggregated and does not personally identify visitors unless you choose to provide contact details.
             </p>
           </section>
 
-          <section>
+          <section id="app-privacy-page-section-4">
             <h2 className="text-2xl font-semibold text-slate-900">Data sharing and security</h2>
             <div className="mt-4 space-y-4 text-slate-600">
               <p>
@@ -69,7 +69,7 @@ export default function Page() {
             </div>
           </section>
 
-          <section>
+          <section id="app-privacy-page-section-5">
             <h2 className="text-2xl font-semibold text-slate-900">Your rights</h2>
             <div className="mt-4 space-y-4 text-slate-600">
               <p>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ShippingRates from "@/components/ui/forms/ShippingRates";
+import VolumetricWeightCalculator from "@/components/ui/forms/VolumetricWeightCalculator";
 
 export const metadata = {
   title: "Shipping Rates | SS Bangla Express",
@@ -15,6 +16,9 @@ export default function RateCalculatorPage() {
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Get a rate for your shipment</h1>
           <p className="mt-4 text-lg leading-8 text-slate-600">Tell us where your parcel is going and what you’re sending. Our team will confirm the available service and price.</p>
         </header>
+        <div className="mx-auto mt-10 max-w-5xl">
+          <VolumetricWeightCalculator />
+        </div>
         <div className="mx-auto mt-10 grid max-w-5xl gap-6 lg:grid-cols-[1fr_300px]">
           <ShippingRates />
           <aside className="rounded-3xl bg-slate-900 p-7 text-white">

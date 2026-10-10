@@ -37,7 +37,7 @@ const details = [
 
 export default function ShippingGuide() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#f7f4f1] py-20 sm:py-28">
+    <section className="relative isolate overflow-hidden bg-[#f7f4f1] py-20 sm:py-28" id="components-ui-home-shippingguide-section-1">
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[34rem] rounded-full bg-[#b81e46]/[0.07] blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-48 -left-32 -z-10 size-[28rem] rounded-full bg-[#ddbd9e]/[0.18] blur-3xl" />
       <div className="container mx-auto px-4 sm:px-6">

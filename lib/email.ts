@@ -39,6 +39,7 @@ export async function sendShipmentBookingEmail(booking: {
   serviceType: string;
   origin: string;
   destination: string;
+  productType: string;
   packageDescription: string;
   weight: number;
   cartons: number;
@@ -48,6 +49,7 @@ export async function sendShipmentBookingEmail(booking: {
   const service = escapeHtml(booking.serviceType);
   const origin = escapeHtml(booking.origin);
   const destination = escapeHtml(booking.destination);
+  const productType = escapeHtml(booking.productType);
   const contents = escapeHtml(booking.packageDescription);
   const parcel = `${booking.weight} kg | ${booking.cartons} carton${booking.cartons === 1 ? "" : "s"}`;
   const domain = (process.env.DOMAIN || "ssbanglaexpress.com").replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -57,7 +59,7 @@ export async function sendShipmentBookingEmail(booking: {
     from: `SS Bangla Express <${sender}>`,
     to: booking.to,
     subject: `Booking received | ${booking.trackingNumber}`,
-    text: `Hello ${booking.customerName},\n\nYour shipment booking is in. Our team will review the details and contact you to confirm the next steps.\n\nTRACKING NUMBER\n${booking.trackingNumber}\n\nSERVICE: ${booking.serviceType}\nROUTE: ${booking.origin} to ${booking.destination}\nCONTENTS: ${booking.packageDescription}\nPARCEL: ${parcel}\n\nTrack your shipment: ${trackingUrl}\n\nThank you for choosing SS Bangla Express.\n\nSS Bangla Express | Ship with confidence`,
+    text: `Hello ${booking.customerName},\n\nYour shipment booking is in. Our team will review the details and contact you to confirm the next steps.\n\nTRACKING NUMBER\n${booking.trackingNumber}\n\nSERVICE: ${booking.serviceType}\nROUTE: ${booking.origin} to ${booking.destination}\nPRODUCT TYPE: ${booking.productType}\nCONTENTS: ${booking.packageDescription}\nPARCEL: ${parcel}\n\nTrack your shipment: ${trackingUrl}\n\nThank you for choosing SS Bangla Express.\n\nSS Bangla Express | Ship with confidence`,
     html: `<!doctype html>
 <html lang="en">
   <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><title>Booking received</title></head>
@@ -87,6 +89,7 @@ export async function sendShipmentBookingEmail(booking: {
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #e9ecf1;border-radius:10px;border-collapse:separate;">
                   <tr><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#788294;font-size:12px;width:34%;">Service</td><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#263247;font-size:13px;font-weight:700;">${service}</td></tr>
                   <tr><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#788294;font-size:12px;">Route</td><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#263247;font-size:13px;font-weight:700;">${origin} <span style="color:#b81e46;">&rarr;</span> ${destination}</td></tr>
+                  <tr><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#788294;font-size:12px;">Product type</td><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#263247;font-size:13px;">${productType}</td></tr>
                   <tr><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#788294;font-size:12px;">Contents</td><td style="padding:12px 14px;border-bottom:1px solid #e9ecf1;color:#263247;font-size:13px;">${contents}</td></tr>
                   <tr><td style="padding:12px 14px;color:#788294;font-size:12px;">Parcel</td><td style="padding:12px 14px;color:#263247;font-size:13px;">${escapeHtml(parcel)}</td></tr>
                 </table>

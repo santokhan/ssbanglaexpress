@@ -24,7 +24,7 @@ const paths = [
 
 export default function Details() {
   return (
-    <section className="bg-[#f7f5f3] py-20 sm:py-24">
+    <section className="bg-[#f7f5f3] py-20 sm:py-24" id="components-ui-details-details-section-1">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#b81e46]">Start here</p>

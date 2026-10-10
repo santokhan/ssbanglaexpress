@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Hero = () => {
     return (
-        <section className="relative isolate overflow-hidden bg-slate-950 py-20 text-white sm:py-28">
+        <section className="relative isolate overflow-hidden bg-slate-950 py-20 text-white sm:py-28" id="components-ui-blogs-hero-section-1">
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_rgba(184,30,70,0.5),_transparent_55%)]" />
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl">

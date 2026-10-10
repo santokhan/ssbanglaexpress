@@ -92,7 +92,7 @@ const Footer = () => {
     return (
         <footer className="bg-white">
             <hr />
-            <section className="py-12 lg:py-16">
+            <section className="py-12 lg:py-16" id="components-layout-footer-footer-section-1">
                 <div className="container mx-auto px-4 sm:divide-y sm:divide-gray-200">
                     <div className="flex flex-wrap gap-x-12 gap-y-12">
                         <div className="basis-64 flex-grow space-y-8">

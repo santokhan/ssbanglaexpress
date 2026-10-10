@@ -1,4 +1,4 @@
-import { Instagram, MessageCircle, Send } from "lucide-react";
+import { Instagram, Linkedin, MessageCircle, Send } from "lucide-react";
 import { contactDetails } from "@/lib/contact-details";
 
 const channels = [
@@ -35,6 +35,14 @@ const channels = [
         external: true,
     },
     {
+        name: "LinkedIn",
+        detail: "Visit our LinkedIn page",
+        href: "https://www.linkedin.com/in/md-shahan-shah-kabir-99b11a1b4",
+        icon: Linkedin,
+        color: "bg-sky-50 text-sky-700",
+        external: true,
+    },
+    {
         name: "Telegram",
         detail: `Message us at ${contactDetails.shipping.display}`,
         href: `https://t.me/+${contactDetails.shipping.display.replace(/\D/g, "")}`,
@@ -46,7 +54,7 @@ const channels = [
 
 export default function ContactChannels() {
     return (
-        <section aria-labelledby="contact-channels-heading" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_55px_-30px_rgba(15,23,42,0.2)] sm:p-8">
+        <section aria-labelledby="contact-channels-heading" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_55px_-30px_rgba(15,23,42,0.2)] sm:p-8" id="components-common-contactchannels-section-1">
             <div className="mx-auto max-w-2xl text-center">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a21b3e]">Choose what works for you</p>
                 <h2 id="contact-channels-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Message us on your preferred channel</h2>
