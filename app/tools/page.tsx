@@ -99,7 +99,7 @@ export default function Page() {
                         <p className="text-sm uppercase tracking-[0.24em] text-slate-400">{tool.title}</p>
                       </div>
                       <p className="mt-3 text-sm leading-6 text-slate-700">{tool.description}</p>
-                      <Link href={tool.href} className="mt-4 inline-flex font-semibold text-[#b81e46] underline-offset-4 hover:underline">{tool.action} <span aria-hidden="true" className="ml-2">â†’</span></Link>
+                      <Link href={tool.href} className="mt-4 inline-flex font-semibold text-[#b81e46] underline-offset-4 hover:underline">{tool.action} <span aria-hidden="true" className="ml-2">→</span></Link>
                     </div>
                   ))}
                 </div>

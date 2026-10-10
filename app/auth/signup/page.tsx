@@ -43,7 +43,7 @@ export default function SignupPage() {
           <label className="block text-sm font-medium text-gray-700">Full name<input name="name" autoComplete="name" required maxLength={100} className="default" /></label>
           <label className="block text-sm font-medium text-gray-700">Email address<input name="email" type="email" autoComplete="email" required maxLength={254} className="default" /></label>
           <label className="block text-sm font-medium text-gray-700">Password<input name="password" type="password" autoComplete="new-password" required minLength={8} maxLength={72} className="default" /></label>
-          <button className="default w-full" disabled={isSubmitting}>{isSubmitting ? "Creating accountâ€¦" : "Sign Up"}</button>
+          <button className="default w-full" disabled={isSubmitting}>{isSubmitting ? "Creating account…" : "Sign Up"}</button>
           {message && <p role="status" className="rounded-xl bg-rose-50 p-3 text-center text-sm text-rose-700">{message}</p>}
         </form>
       </div>

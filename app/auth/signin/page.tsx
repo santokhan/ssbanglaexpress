@@ -85,9 +85,9 @@ const Page = () => {
                     <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive" onLoad={initializeGoogleButton} />
                     {googleClientId ? <>
                         <div ref={googleButton} className="flex min-h-10 justify-center" aria-label="Continue with Google" />
-                        {!googleButtonRendered && <p className="text-center text-xs text-slate-500">Loading Google sign-inâ€¦</p>}
+                        {!googleButtonRendered && <p className="text-center text-xs text-slate-500">Loading Google sign-in…</p>}
                     </> : <p className="rounded-lg bg-amber-50 px-3 py-2 text-center text-sm text-amber-900">Google sign-in is not configured.</p>}
-                    {googleBusy && <p role="status" className="text-center text-sm text-slate-600">Signing in with Googleâ€¦</p>}
+                    {googleBusy && <p role="status" className="text-center text-sm text-slate-600">Signing in with Google…</p>}
                     {googleError && <p role="alert" className="text-center text-sm text-rose-700">{googleError}</p>}
                     <div className="flex items-center gap-3 text-xs font-medium text-slate-400"><span className="h-px flex-1 bg-slate-200" />or continue with email<span className="h-px flex-1 bg-slate-200" /></div>
                 </div>
