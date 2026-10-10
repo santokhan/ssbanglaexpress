@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sendShipmentBookingEmail } from "@/lib/email";
 
 const fields = ["customerName", "customerEmail", "customerPhone", "origin", "destination", "pickupAddress", "deliveryAddress", "serviceType", "packageDescription", "weight", "cartons", "specialInstructions"] as const;
 const limits: Record<(typeof fields)[number], number> = { customerName: 100, customerEmail: 254, customerPhone: 30, origin: 80, destination: 80, pickupAddress: 500, deliveryAddress: 500, serviceType: 50, packageDescription: 500, weight: 20, cartons: 5, specialInstructions: 1000 };
@@ -28,6 +29,22 @@ export async function createShipmentBooking(formData: FormData) {
   } catch (error) {
     console.error("Shipment booking failed", error);
     redirect("/book?error=save");
+  }
+  try {
+    await sendShipmentBookingEmail({
+      to: data.customerEmail.toLowerCase(),
+      customerName: data.customerName,
+      trackingNumber,
+      serviceType: data.serviceType,
+      origin: data.origin,
+      destination: data.destination,
+      packageDescription: data.packageDescription,
+      weight,
+      cartons,
+    });
+  } catch (error) {
+    // Email delivery must not turn a successfully saved booking into a failed submission.
+    console.error("Shipment booking confirmation email failed", error);
   }
   redirect(`/book?tracking=${encodeURIComponent(trackingNumber)}`);
 }

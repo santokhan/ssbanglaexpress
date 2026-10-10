@@ -1,40 +1,47 @@
 import Link from "next/link";
+import { Calculator, ClipboardCheck, FileText, Headset, MapPin, PackageCheck } from "lucide-react";
 import BannerBottom from "@/components/ui/banner/BannerBottom";
 import SectionTitle from "@/components/common/SectionTitle";
 
 const tools = [
   {
     title: "Shipping quote",
+    Icon: Calculator,
     description: "Share your parcel details and request a confirmed price for your route.",
     href: "/rate-calculator",
     action: "Request a quote",
   },
   {
     title: "Shipment update",
+    Icon: PackageCheck,
     description: "Contact our team with your tracking reference to ask about a shipment.",
     href: "/contact",
     action: "Ask for an update",
   },
   {
     title: "Service locations",
+    Icon: MapPin,
     description: "Contact our Dhaka team to confirm collection and service availability for your area.",
     href: "/contact",
     action: "Find locations",
   },
   {
     title: "Customs support",
+    Icon: FileText,
     description: "Ask our team which documents may be needed for your destination and shipment.",
     href: "/contact",
     action: "Ask support",
   },
   {
     title: "Packing checklist",
+    Icon: ClipboardCheck,
     description: "Request packing and document guidance for the service and item you plan to send.",
     href: "/contact",
     action: "Request checklist",
   },
   {
     title: "Shipment support",
+    Icon: Headset,
     description: "Get help with bookings, route questions, and shipment details from our team.",
     href: "/contact",
     action: "Contact us",
@@ -85,9 +92,14 @@ export default function Page() {
                 <div className="grid gap-4">
                   {tools.slice(0, 3).map((tool) => (
                     <div key={tool.title} className="rounded-3xl bg-white p-5 shadow-sm">
-                      <p className="text-sm uppercase tracking-[0.24em] text-slate-400">{tool.title}</p>
+                      <div className="flex items-center gap-3">
+                        <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#b81e46]/10 text-[#b81e46]">
+                          <tool.Icon aria-hidden="true" size={21} strokeWidth={1.8} />
+                        </span>
+                        <p className="text-sm uppercase tracking-[0.24em] text-slate-400">{tool.title}</p>
+                      </div>
                       <p className="mt-3 text-sm leading-6 text-slate-700">{tool.description}</p>
-                      <Link href={tool.href} className="mt-4 inline-flex font-semibold text-[#b81e46] underline-offset-4 hover:underline">{tool.action} <span aria-hidden="true" className="ml-2">→</span></Link>
+                      <Link href={tool.href} className="mt-4 inline-flex font-semibold text-[#b81e46] underline-offset-4 hover:underline">{tool.action} <span aria-hidden="true" className="ml-2">â†’</span></Link>
                     </div>
                   ))}
                 </div>
@@ -103,6 +115,9 @@ export default function Page() {
             <div className="grid gap-6 lg:grid-cols-3">
               {tools.map((tool) => (
                 <div key={tool.title} className="rounded-3xl border border-slate-200 p-6 transition hover:-translate-y-1 hover:border-[#b81e46]/30 hover:bg-[#b81e46]/5">
+                  <div className="mb-5 grid size-14 place-items-center rounded-2xl bg-[#b81e46]/10 text-[#b81e46]">
+                    <tool.Icon aria-hidden="true" size={26} strokeWidth={1.8} />
+                  </div>
                   <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#b81e46]">{tool.title}</p>
                   <p className="mt-4 text-sm leading-6 text-slate-700">{tool.description}</p>
                   <Link
@@ -110,6 +125,7 @@ export default function Page() {
                     className="mt-6 inline-flex items-center text-sm font-semibold text-[#b81e46]"
                   >
                     {tool.action}
+                    <span aria-hidden="true" className="ml-2">{String.fromCharCode(0x2192)}</span>
                   </Link>
                 </div>
               ))}
