@@ -5,6 +5,7 @@ import "./globals.css";
 import SiteChrome from "@/components/layout/SiteChrome";
 import FacebookMessenger from "@/components/layout/messnger/FacebookMessenger";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <SiteChrome>{children}</SiteChrome>
         <FacebookMessenger />
         <MetaPixel />
+        <GoogleAnalytics />
       </body>
     </html>
   );
