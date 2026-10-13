@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
-import SiteChrome from "@/components/layout/SiteChrome";
-import FacebookMessenger from "@/components/layout/messnger/FacebookMessenger";
-import MetaPixel from "@/components/analytics/MetaPixel";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${process.env.DOMAIN ?? "ssbanglaexpress.com"}`),
+  metadataBase: new URL(
+    `https://${process.env.DOMAIN ?? "ssbanglaexpress.com"}`,
+  ),
   title: "SS Bangla Express",
   description:
     "International courier service, logistics, shipping, import, door-to-door",
@@ -21,12 +19,14 @@ export const metadata: Metadata = {
     title: "SS Bangla Express",
     description:
       "International courier service, logistics, shipping, import, door-to-door",
-    images: [{
-      url: "/opengraph-image.webp",
-      width: 1200,
-      height: 630,
-      alt: "SS Bangla Express worldwide door-to-door courier service",
-    }],
+    images: [
+      {
+        url: "/opengraph-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "SS Bangla Express worldwide door-to-door courier service",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -37,15 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <SiteChrome>{children}</SiteChrome>
-        <FacebookMessenger />
-        <MetaPixel />
-        <GoogleAnalytics />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

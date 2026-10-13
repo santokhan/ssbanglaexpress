@@ -70,6 +70,11 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      height: {
+        header: "var(--height-header)",
+        navbar: "var(--height-navbar)",
+        main: "var(--height-main)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

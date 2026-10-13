@@ -33,7 +33,8 @@
 
   --radius: 0.5rem;
 
-  --height-header: 72px;
+  --height-header: 64px;
+  --height-navbar: 60px;
   --height-main: calc(100dvh - var(--height-header));
 }
 

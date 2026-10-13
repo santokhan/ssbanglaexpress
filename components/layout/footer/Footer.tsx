@@ -38,6 +38,10 @@ const Footer = () => {
                 label: "Contact",
                 path: "/contact"
             },
+            {
+                label: "Chat with support",
+                path: "/messages"
+            },
         ],
         [
             {
