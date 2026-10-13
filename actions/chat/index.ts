@@ -47,14 +47,18 @@ function messageView(
   const chatMetadata = hasChatMetadata ? message.data.__chat : null;
   const isSupportReply =
     isRecord(chatMetadata) &&
-    (chatMetadata.source === "admin" || chatMetadata.source === "bot");
+    (chatMetadata.source === "admin" ||
+      chatMetadata.source === "bot" ||
+      chatMetadata.source === "fallback");
   const isLegacyBotReply = message.data !== null && !hasChatMetadata;
   return {
     id: message.id,
     content: message.content ?? "",
     createdAt: message.createdAt.toISOString(),
     senderId: message.senderId,
-    senderName: message.sender?.name ?? guestName ?? "Customer",
+    senderName: isSupportReply
+      ? "Support"
+      : (message.sender?.name ?? guestName ?? "Customer"),
     isOwn:
       !isSupportReply && !isLegacyBotReply && message.senderId === ownerId,
   };

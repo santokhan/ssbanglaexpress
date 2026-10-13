@@ -32,6 +32,33 @@ function escapeHtml(value: string) {
   })[character]!);
 }
 
+export async function sendNewChatMessageEmail(input: {
+  to: string[];
+  chatId: string;
+  customerName: string;
+  customerEmail?: string | null;
+  message: string;
+}) {
+  if (!input.to.length) return;
+  const customerName = escapeHtml(input.customerName);
+  const customerEmail = input.customerEmail
+    ? escapeHtml(input.customerEmail)
+    : "Not provided";
+  const message = escapeHtml(input.message);
+  const domain = (process.env.DOMAIN || "ssbanglaexpress.com")
+    .replace(/^https?:\/\//, "")
+    .replace(/\/$/, "");
+  const chatUrl = `https://${domain}/admin/chats`;
+
+  await getTransporter().sendMail({
+    from: `SS Bangla Express <${sender}>`,
+    to: input.to,
+    subject: "New customer support message",
+    text: `A customer sent a new support message.\n\nCustomer: ${input.customerName}\nEmail: ${input.customerEmail || "Not provided"}\nChat ID: ${input.chatId}\n\nMessage:\n${input.message}\n\nOpen the admin chat inbox: ${chatUrl}`,
+    html: `<p>A customer sent a new support message.</p><p><strong>Customer:</strong> ${customerName}<br><strong>Email:</strong> ${customerEmail}<br><strong>Chat ID:</strong> ${escapeHtml(input.chatId)}</p><p><strong>Message:</strong></p><blockquote style="white-space:pre-wrap">${message}</blockquote><p><a href="${chatUrl}">Open the admin chat inbox</a></p>`,
+  });
+}
+
 export async function sendShipmentBookingEmail(booking: {
   to: string;
   customerName: string;
