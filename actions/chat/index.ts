@@ -42,9 +42,12 @@ function messageView(
   ownerId: string | null,
   guestName?: string | null,
 ): ChatMessageView {
-  const hasChatMetadata =
-    isRecord(message.data) && isRecord(message.data.__chat);
-  const chatMetadata = hasChatMetadata ? message.data.__chat : null;
+  const messageData = isRecord(message.data) ? message.data : null;
+  const chatMetadata =
+    messageData && isRecord(messageData.__chat)
+      ? messageData.__chat
+      : null;
+  const hasChatMetadata = chatMetadata !== null;
   const isSupportReply =
     isRecord(chatMetadata) &&
     (chatMetadata.source === "admin" ||
