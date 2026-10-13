@@ -16,7 +16,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 export async function requestBotReply(chatId: string, content: string) {
   const BOT_API =
     process.env.BOT_CHAT_API_URL || "https://bot.ssbanglaexpress.com";
-  const token = process.env.BOT_CHAT_API_TOKEN;
+  const token =
+    process.env.BOT_CHAT_API_TOKEN ||
+    "3c84b6860d8eba9c99a6a73ae1b80b715c7bf9f883765b20c6089034be412319";
   if (!token) {
     console.error("[chat-bot] API token is not configured.");
     return;
