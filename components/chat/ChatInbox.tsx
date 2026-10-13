@@ -27,11 +27,6 @@ export default function ChatInbox({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
-  const [guestName, setGuestName] = useState("");
-  const [guestEmail, setGuestEmail] = useState("");
-  const [guestPhone, setGuestPhone] = useState("");
-  const [contextType, setContextType] = useState("support");
-  const [contextReference, setContextReference] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
   const refresh = useCallback(async () => {
     const result = await getMyChatAction();
@@ -57,14 +52,7 @@ export default function ChatInbox({
     const result = await sendChatMessageAction(
       user
         ? draft
-        : {
-            content: draft,
-            name: guestName,
-            email: guestEmail,
-            phone: guestPhone,
-            contextType,
-            contextReference,
-          },
+        : { content: draft },
     );
     if (result.ok) {
       setDraft("");
@@ -180,112 +168,6 @@ export default function ChatInbox({
               onSubmit={submit}
               className="border-t border-slate-200 bg-white p-4 sm:px-6"
             >
-              {!user && !chat && (
-                <div className="mb-3 grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor="guest-name"
-                      className="mb-1 block text-xs font-semibold text-slate-600"
-                    >
-                      Your name
-                    </label>
-                    <input
-                      id="guest-name"
-                      required
-                      maxLength={100}
-                      value={guestName}
-                      onChange={(event) => setGuestName(event.target.value)}
-                      autoComplete="name"
-                      className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#b81e46]"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="guest-email"
-                      className="mb-1 block text-xs font-semibold text-slate-600"
-                    >
-                      Email for replies
-                    </label>
-                    <input
-                      id="guest-email"
-                      required
-                      type="email"
-                      maxLength={254}
-                      value={guestEmail}
-                      onChange={(event) => setGuestEmail(event.target.value)}
-                      autoComplete="email"
-                      className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#b81e46]"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="guest-phone"
-                      className="mb-1 block text-xs font-semibold text-slate-600"
-                    >
-                      Phone{" "}
-                      <span className="font-normal text-slate-400">
-                        (optional)
-                      </span>
-                    </label>
-                    <input
-                      id="guest-phone"
-                      maxLength={30}
-                      value={guestPhone}
-                      onChange={(event) => setGuestPhone(event.target.value)}
-                      autoComplete="tel"
-                      className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#b81e46]"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="chat-topic"
-                      className="mb-1 block text-xs font-semibold text-slate-600"
-                    >
-                      What is this about?
-                    </label>
-                    <select
-                      id="chat-topic"
-                      value={contextType}
-                      onChange={(event) => setContextType(event.target.value)}
-                      className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#b81e46]"
-                    >
-                      <option value="support">General support</option>
-                      <option value="quote">A quote</option>
-                      <option value="shipment">A shipment</option>
-                      <option value="tracking">Tracking</option>
-                    </select>
-                  </div>
-                  {contextType !== "support" && (
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="chat-reference"
-                        className="mb-1 block text-xs font-semibold text-slate-600"
-                      >
-                        Reference number{" "}
-                        <span className="font-normal text-slate-400">
-                          (optional)
-                        </span>
-                      </label>
-                      <input
-                        id="chat-reference"
-                        maxLength={100}
-                        value={contextReference}
-                        onChange={(event) =>
-                          setContextReference(event.target.value)
-                        }
-                        placeholder={
-                          contextType === "tracking"
-                            ? "Tracking number"
-                            : contextType === "quote"
-                              ? "Quote request number"
-                              : "Shipment number"
-                        }
-                        className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#b81e46]"
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
               <label htmlFor="chat-message" className="sr-only">
                 Your message
               </label>

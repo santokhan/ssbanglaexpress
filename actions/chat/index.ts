@@ -13,11 +13,6 @@ type Result<T = undefined> =
   | { ok: false; error: string };
 type GuestMessageInput = {
   content?: unknown;
-  name?: unknown;
-  email?: unknown;
-  phone?: unknown;
-  contextType?: unknown;
-  contextReference?: unknown;
 };
 
 const GUEST_COOKIE = "ssbangla_guest_chat";
@@ -59,7 +54,7 @@ function messageView(
     content: message.content ?? "",
     createdAt: message.createdAt.toISOString(),
     senderId: message.senderId,
-    senderName: message.sender?.name ?? guestName ?? "Support",
+    senderName: message.sender?.name ?? guestName ?? "Customer",
     isOwn:
       !isSupportReply && !isLegacyBotReply && message.senderId === ownerId,
   };
@@ -223,33 +218,10 @@ export async function sendChatMessageAction(
       })
     : null;
   if (!chat) {
-    const name = stringValue(values.name, 100);
-    const email = stringValue(values.email, 254).toLowerCase();
-    const phone = stringValue(values.phone, 30);
-    const contextType = stringValue(values.contextType, 20).toLowerCase();
-    const contextReference = stringValue(values.contextReference, 100);
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      return {
-        ok: false,
-        error: "Enter your name and a valid email address to start this chat.",
-      };
-    if (
-      contextType &&
-      !["quote", "shipment", "tracking", "support"].includes(contextType)
-    )
-      return {
-        ok: false,
-        error: "Choose a valid reason for contacting support.",
-      };
     const guestToken = randomBytes(32).toString("base64url");
     chat = await prisma.chat.create({
       data: {
-        guestName: name,
-        guestEmail: email,
-        guestPhone: phone || null,
         guestTokenHash: tokenHash(guestToken),
-        contextType: contextType || null,
-        contextReference: contextReference || null,
         messages: { create: { id: randomUUID(), content } },
       },
     });
