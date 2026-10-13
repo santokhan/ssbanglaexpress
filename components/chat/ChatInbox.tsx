@@ -14,9 +14,8 @@ import Link from "next/link";
 import {
   getMyChatAction,
   sendChatMessageAction,
-  type ChatMessageView,
-  type ChatView,
 } from "@/actions/chat";
+import type { ChatMessageView, ChatView } from "@/types/chat";
 
 export default function ChatInbox({
   user,

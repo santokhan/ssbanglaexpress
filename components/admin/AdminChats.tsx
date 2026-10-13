@@ -2,7 +2,8 @@
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { LoaderCircle, MessageCircle, Send } from "lucide-react";
-import { listAdminChatsAction, markAdminChatReadAction, sendAdminChatMessageAction, type ChatMessageView, type ChatView } from "@/actions/chat";
+import { listAdminChatsAction, markAdminChatReadAction, sendAdminChatMessageAction } from "@/actions/chat";
+import type { ChatMessageView, ChatView } from "@/types/chat";
 
 export default function AdminChats() {
   const [chats, setChats] = useState<ChatView[]>([]);
