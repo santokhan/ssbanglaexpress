@@ -314,3 +314,20 @@ model Message {
   @@index([senderId, createdAt])
   @@index([replyToId])
 }
+
+model EmailJob {
+  id        String    @id
+  type      String
+  payload   Json
+  status    String    @default("PENDING")
+  attempts  Int       @default(0)
+  runAt     DateTime  @default(now()) @db.Timestamptz(6)
+  lockedAt  DateTime? @db.Timestamptz(6)
+  sentAt    DateTime? @db.Timestamptz(6)
+  lastError String?
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([status, runAt])
+  @@index([status, lockedAt])
+}
