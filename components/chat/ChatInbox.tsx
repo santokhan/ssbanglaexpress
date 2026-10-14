@@ -11,10 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
-import {
-  getMyChatAction,
-  sendChatMessageAction,
-} from "@/actions/chat";
+import { getMyChatAction, sendChatMessageAction } from "@/actions/chat";
 import type { ChatMessageView, ChatView } from "@/types/chat";
 
 export default function ChatInbox({
@@ -50,9 +47,7 @@ export default function ChatInbox({
     setSending(true);
     setError("");
     const result = await sendChatMessageAction(
-      user
-        ? draft
-        : { content: draft },
+      user ? draft : { content: draft },
     );
     if (result.ok) {
       setDraft("");
@@ -126,14 +121,7 @@ export default function ChatInbox({
             </div>
             <div>
               <h1 className="mt-1 text-xl font-bold">Chat with our team</h1>
-              <p className="mt-1 text-sm text-slate-500">
-                Send us a message and we’ll reply here.
-              </p>
             </div>
-            <span className="ml-auto flex items-center gap-2 text-xs font-semibold text-emerald-700">
-              <span className="size-2 rounded-full bg-emerald-500" />
-              Online support
-            </span>
           </header>
           <div className="flex min-h-0 flex-1 flex-col bg-[#fbfcfd]">
             <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-7 sm:py-8">
@@ -166,7 +154,7 @@ export default function ChatInbox({
             </div>
             <form
               onSubmit={submit}
-              className="border-t border-slate-200 bg-white p-4 sm:px-6"
+              className="border-t border-slate-200 bg-white px-4 py-3 sm:px-6"
             >
               <label htmlFor="chat-message" className="sr-only">
                 Your message
@@ -200,9 +188,6 @@ export default function ChatInbox({
                   )}
                 </button>
               </div>
-              <p className="mt-2 text-[11px] text-slate-400">
-                Press Enter to send, Shift + Enter for a new line.
-              </p>
             </form>
           </div>
         </section>

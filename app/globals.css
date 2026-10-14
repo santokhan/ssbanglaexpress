@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
+  --background: #fbf8f6;
   --foreground: 222.2 84% 4.9%;
+  --brand: #b81e46;
 
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
@@ -50,7 +51,7 @@
   body>section,
   body>main>section,
   section.section {
-    @apply py-16 lg:py-20 space-y-14;
+    @apply py-6 sm:py-12 lg:py-20 space-y-14;
   }
 }
 
