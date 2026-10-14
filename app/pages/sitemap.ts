@@ -9,7 +9,7 @@ export default function Sitemap(): MetadataRoute.Sitemap {
         "/cancellation",
         "/contact",
         "/quote",
-        "/rate-calculator",
+        "/rates",
         "/services",
         "/team",
         "/track",

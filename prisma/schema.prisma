@@ -39,6 +39,11 @@ enum PaymentStatus {
   CANCELLED
 }
 
+enum MessageRole {
+  CUSTOMER
+  SUPPORT
+}
+
 enum UserRole {
   USER
   ADMIN
@@ -119,6 +124,23 @@ model QuoteRequest {
 
   @@index([status, receivedAt])
   @@index([userId, receivedAt])
+}
+
+model PublicRate {
+  id             String   @id @default(cuid())
+  origin         String
+  destination    String
+  service        String
+  minWeightKg    Decimal  @db.Decimal(10, 2)
+  maxWeightKg    Decimal? @db.Decimal(10, 2)
+  amount         Decimal  @db.Decimal(12, 2)
+  currency       String   @default("USD")
+  notes          String   @default("")
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([active, origin, destination, service, minWeightKg])
 }
 
 model ContactMessage {
@@ -272,6 +294,7 @@ model Message {
   id        String    @id @default(cuid())
   chatId    String
   senderId  String?
+  role      MessageRole @default(CUSTOMER)
   replyToId String?
   imageId   String?
   content   String?   @db.Text

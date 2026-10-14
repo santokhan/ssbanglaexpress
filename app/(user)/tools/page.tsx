@@ -5,11 +5,11 @@ import SectionTitle from "@/components/common/SectionTitle";
 
 const tools = [
   {
-    title: "Shipping quote",
+    title: "Shipping rates",
     Icon: Calculator,
-    description: "Share your parcel details and request a confirmed price for your route.",
-    href: "/rate-calculator",
-    action: "Request a quote",
+    description: "Browse published shipping rates by destination, service, and parcel weight.",
+    href: "/rates",
+    action: "View shipping rates",
   },
   {
     title: "Shipment update",
@@ -66,10 +66,10 @@ export default function Page() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="/rate-calculator"
+                  href="/rates"
                   className="inline-flex items-center rounded-full bg-[#b81e46] px-6 py-3 text-sm font-semibold text-white shadow hover:bg-[#7d162f]"
                 >
-                  Request a shipping quote
+                  View shipping rates
                 </Link>
                 <Link
                   href="/contact"

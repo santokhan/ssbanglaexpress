@@ -36,6 +36,7 @@ function messageView(
     content: string | null;
     createdAt: Date;
     senderId: string | null;
+    role: "CUSTOMER" | "SUPPORT";
     sender: { id: string; name: string } | null;
     data: unknown;
   },
@@ -54,12 +55,16 @@ function messageView(
       chatMetadata.source === "bot" ||
       chatMetadata.source === "fallback");
   const isLegacyBotReply = message.data !== null && !hasChatMetadata;
+  const role = message.role === "SUPPORT" || isSupportReply || isLegacyBotReply
+    ? "SUPPORT"
+    : "CUSTOMER";
   return {
     id: message.id,
     content: message.content ?? "",
     createdAt: message.createdAt.toISOString(),
     senderId: message.senderId,
-    senderName: isSupportReply
+    role,
+    senderName: role === "SUPPORT"
       ? "Support"
       : (message.sender?.name ?? guestName ?? "Customer"),
     isOwn:
@@ -190,6 +195,7 @@ export async function sendChatMessageAction(
           id: randomUUID(),
           chatId: chat!.id,
           senderId: user.id,
+          role: "CUSTOMER",
           content,
         },
       });
@@ -229,7 +235,7 @@ export async function sendChatMessageAction(
     chat = await prisma.chat.create({
       data: {
         guestTokenHash: tokenHash(guestToken),
-        messages: { create: { id: randomUUID(), content } },
+        messages: { create: { id: randomUUID(), content, role: "CUSTOMER" } },
       },
     });
     const lastMessage = await prisma.message.findFirstOrThrow({
@@ -254,7 +260,7 @@ export async function sendChatMessageAction(
 
   const message = await prisma.$transaction(async (tx) => {
     const created = await tx.message.create({
-      data: { id: randomUUID(), chatId: chat!.id, content },
+      data: { id: randomUUID(), chatId: chat!.id, content, role: "CUSTOMER" },
     });
     await tx.chat.update({
       where: { id: chat!.id },
@@ -337,6 +343,7 @@ export async function sendAdminChatMessageAction(
         id: randomUUID(),
         chatId,
         senderId: admin.id,
+        role: "SUPPORT",
         content,
         data: { __chat: { source: "admin" } },
       },

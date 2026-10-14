@@ -1,0 +1,8 @@
+CREATE TYPE "MessageRole" AS ENUM ('CUSTOMER', 'SUPPORT');
+
+ALTER TABLE "Message"
+ADD COLUMN "role" "MessageRole" NOT NULL DEFAULT 'CUSTOMER';
+
+UPDATE "Message"
+SET "role" = 'SUPPORT'
+WHERE "data" IS NOT NULL;

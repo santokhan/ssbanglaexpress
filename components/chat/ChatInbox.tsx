@@ -140,7 +140,7 @@ export default function ChatInbox({
                 <MessageBubble
                   key={message.id}
                   message={message}
-                  mine={Boolean(message.isOwn)}
+                  mine={message.role === "CUSTOMER"}
                 />
               ))}
               {error && (

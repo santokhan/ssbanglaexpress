@@ -53,8 +53,8 @@ const Footer = () => {
                 path: "/tools"
             },
             {
-                label: "Rate calculator",
-                path: "/rate-calculator"
+                label: "Shipping rates",
+                path: "/rates"
             },
             {
                 label: "Blogs",

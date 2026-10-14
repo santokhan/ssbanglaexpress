@@ -93,6 +93,7 @@ async function storeSupportReply(
         id: randomUUID(),
         chatId,
         senderId: admin?.id ?? null,
+        role: "SUPPORT",
         content,
         data: {
           __chat: { source },

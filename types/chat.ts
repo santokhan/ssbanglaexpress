@@ -3,6 +3,7 @@ export type ChatMessageView = {
   content: string;
   createdAt: string;
   senderId: string | null;
+  role: "CUSTOMER" | "SUPPORT";
   senderName: string;
   isOwn?: boolean;
 };

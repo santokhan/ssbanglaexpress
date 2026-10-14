@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getSessionUser } from "@/lib/auth";
 import { isShipmentAdmin, isSuperAdmin } from "@/lib/admin";
 import { prisma } from "@/lib/prisma";
+import { parseRateCsv } from "@/lib/rate-csv";
 
 const statuses = ["BOOKED", "PICKUP_SCHEDULED", "PICKED_UP", "IN_TRANSIT", "CUSTOMS_CLEARANCE", "OUT_FOR_DELIVERY", "DELIVERED", "ON_HOLD", "CANCELLED", "EXCEPTION"] as const;
 
@@ -44,4 +45,29 @@ export async function updateShipmentStatus(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/admin/shipments");
   revalidatePath(`/admin/shipments/${shipmentId}`);
+}
+
+export async function importPublicRates(formData: FormData) {
+  const user = await getSessionUser();
+  if (!user || !isShipmentAdmin(user)) return { ok: false, message: "Unauthorized." };
+  const file = formData.get("file");
+  if (!(file instanceof File) || !file.size) return { ok: false, message: "Choose a CSV file to upload." };
+  if (file.size > 2_000_000) return { ok: false, message: "CSV file must be smaller than 2 MB." };
+  if (!file.name.toLowerCase().endsWith(".csv")) return { ok: false, message: "Upload a .csv file." };
+
+  try {
+    const rates = parseRateCsv(await file.text());
+    await prisma.$transaction(async (tx) => {
+      await tx.publicRate.deleteMany();
+      await tx.publicRate.createMany({ data: rates });
+    });
+    revalidatePath("/admin/rates");
+    revalidatePath("/rates");
+    revalidatePath("/rate-calculator");
+    revalidatePath("/api/rates");
+    revalidatePath("/api/rates.csv");
+    return { ok: true, message: `Published ${rates.length} rates.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not import this CSV." };
+  }
 }
