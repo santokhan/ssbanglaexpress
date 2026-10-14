@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { getMyChatAction, sendChatMessageAction } from "@/actions/chat";
 import type { ChatMessageView, ChatView } from "@/types/chat";
+import LinkedMessage from "@/components/chat/LinkedMessage";
 
 export default function ChatInbox({
   user,
@@ -218,9 +219,7 @@ function MessageBubble({
         >
           {mine ? "You" : message.senderName}
         </p>
-        <p className="whitespace-pre-wrap break-words text-sm leading-6">
-          {message.content}
-        </p>
+        <LinkedMessage content={message.content} mine={mine} />
         <p
           className={`mt-2 text-right text-[10px] ${mine ? "text-white/60" : "text-slate-400"}`}
         >

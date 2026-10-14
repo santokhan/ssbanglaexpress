@@ -4,6 +4,7 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { LoaderCircle, MessageCircle, Send } from "lucide-react";
 import { listAdminChatsAction, markAdminChatReadAction, sendAdminChatMessageAction } from "@/actions/chat";
 import type { ChatMessageView, ChatView } from "@/types/chat";
+import LinkedMessage from "@/components/chat/LinkedMessage";
 
 export default function AdminChats() {
   const [chats, setChats] = useState<ChatView[]>([]);
@@ -48,5 +49,5 @@ export default function AdminChats() {
 }
 
 function MessageBubble({ message, mine }: { message: ChatMessageView; mine: boolean }) {
-  return <div className={`flex ${mine ? "justify-end" : "justify-start"}`}><div className={`max-w-[85%] rounded-2xl px-4 py-3 sm:max-w-[72%] ${mine ? "rounded-br-md bg-[#b81e46] text-white" : "rounded-bl-md border border-slate-100 bg-white text-slate-800"}`}><p className={`mb-1 text-[11px] font-bold ${mine ? "text-white/70" : "text-[#a61940]"}`}>{mine ? "Support" : message.senderName}</p><p className="whitespace-pre-wrap break-words text-sm leading-6">{message.content}</p><p className={`mt-2 text-right text-[10px] ${mine ? "text-white/60" : "text-slate-400"}`}>{new Date(message.createdAt).toLocaleString("en-BD", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Dhaka" })}</p></div></div>;
+  return <div className={`flex ${mine ? "justify-end" : "justify-start"}`}><div className={`max-w-[85%] rounded-2xl px-4 py-3 sm:max-w-[72%] ${mine ? "rounded-br-md bg-[#b81e46] text-white" : "rounded-bl-md border border-slate-100 bg-white text-slate-800"}`}><p className={`mb-1 text-[11px] font-bold ${mine ? "text-white/70" : "text-[#a61940]"}`}>{mine ? "Support" : message.senderName}</p><LinkedMessage content={message.content} mine={mine} /><p className={`mt-2 text-right text-[10px] ${mine ? "text-white/60" : "text-slate-400"}`}>{new Date(message.createdAt).toLocaleString("en-BD", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Dhaka" })}</p></div></div>;
 }
