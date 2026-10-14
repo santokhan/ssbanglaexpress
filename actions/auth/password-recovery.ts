@@ -4,7 +4,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { hash } from "bcryptjs";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { sendPasswordResetEmail } from "@/lib/email";
+import { enqueueEmail } from "@/lib/email-queue";
 
 type ActionResult = { ok: true } | { ok: false; message: string };
 const genericRequestSuccess: ActionResult = { ok: true };
@@ -24,11 +24,6 @@ export async function requestPasswordReset(emailInput: unknown): Promise<ActionR
 
     const token = randomBytes(32).toString("base64url");
     const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
-    await prisma.$transaction([
-      prisma.passwordResetToken.deleteMany({ where: { userId: user.id } }),
-      prisma.passwordResetToken.create({ data: { tokenHash: tokenDigest(token), userId: user.id, expiresAt } }),
-    ]);
-
     const requestHeaders = await headers();
     const requestOrigin = requestHeaders.get("origin");
     const requestHost = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
@@ -40,7 +35,11 @@ export async function requestPasswordReset(emailInput: unknown): Promise<ActionR
       throw new Error("Password reset links must use HTTPS outside localhost.");
     }
     resetUrl.searchParams.set("token", token);
-    await sendPasswordResetEmail(email, resetUrl.toString());
+    await prisma.$transaction(async (tx) => {
+      await tx.passwordResetToken.deleteMany({ where: { userId: user.id } });
+      await tx.passwordResetToken.create({ data: { tokenHash: tokenDigest(token), userId: user.id, expiresAt } });
+      await enqueueEmail(tx, "PASSWORD_RESET", { to: email, resetUrl: resetUrl.toString() });
+    });
     return genericRequestSuccess;
   } catch (error) {
     console.error("Password reset email request failed", error);

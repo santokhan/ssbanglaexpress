@@ -48,3 +48,9 @@ Copy `.env.example` to `.env` (or add the variables to your existing ignored `.e
 Install the schema in the Supabase database with `npm run db:push`, then start the app. Prisma stores users, quote requests, and contact messages. Signup supports email/password and Google sign-in; passwords are hashed and sessions use an HTTP-only cookie. Existing Supabase data is not deleted by `db:push`.
 
 Password recovery uses server actions, stores one-time reset tokens in the database, and sends reset links through Gmail SMTP. Configure `SMTP_USER` and `SMTP_APP_PASSWORD` before enabling recovery in production. Reset links use the origin of the request.
+
+## Background email delivery on Vercel
+
+Email is stored in the PostgreSQL `EmailJob` outbox and sent by `/api/cron/process-email`. Vercel invokes this endpoint once per minute using `vercel.json`; each invocation claims a small batch, retries temporary failures with backoff, and marks exhausted jobs as `FAILED`. The claim uses PostgreSQL row locks so overlapping invocations do not normally process the same job.
+
+Before deploying, run [`database/email_jobs.sql`](database/email_jobs.sql) once against the production PostgreSQL database (for example, in the Supabase SQL Editor). This creates only the queue table and indexes and does not alter existing application tables. Add a strong random `CRON_SECRET` environment variable in Vercel, and configure `SMTP_USER` and `SMTP_APP_PASSWORD` in the same environment. This once-per-minute schedule requires Vercel Pro or Enterprise; Hobby allows Cron Jobs only once per day, which is too slow for password resets and booking confirmations. Monitor failed jobs in `EmailJob`; retry one with `UPDATE "EmailJob" SET "status" = 'PENDING', "runAt" = NOW(), "lockedAt" = NULL WHERE "id" = '<job-id>';`.

@@ -3,7 +3,7 @@
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { Prisma } from "@/generated/prisma/client";
-import { sendNewChatMessageEmail } from "@/lib/email";
+import { enqueueEmail } from "@/lib/email-queue";
 import { prisma } from "@/lib/prisma";
 
 function stringValue(value: unknown, max: number) {
@@ -54,13 +54,13 @@ async function notifyAdminsOfIncomingMessage(
       });
       return;
     }
-    await sendNewChatMessageEmail({
+    await prisma.$transaction((tx) => enqueueEmail(tx, "CHAT_MESSAGE", {
       to: recipients,
       chatId,
       customerName: chat?.createdBy?.name ?? chat?.guestName ?? "Customer",
-      customerEmail: chat?.createdBy?.email ?? chat?.guestEmail,
+      customerEmail: chat?.createdBy?.email ?? chat?.guestEmail ?? null,
       message: content,
-    });
+    }));
   } catch (error) {
     console.error("[chat-bot] Admin notification email failed.", {
       chatId,
