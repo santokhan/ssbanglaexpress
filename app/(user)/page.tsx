@@ -8,6 +8,7 @@ import YoutubeVideo from "@/components/ui/youtube/YoutubeVideo";
 import ShippingGuide from "@/components/ui/home/ShippingGuide";
 import FacebookPagePreview from "@/components/ui/home/FacebookPagePreview";
 import InternationalShipping from "@/components/ui/home/InternationalShipping";
+import GarmentsSection from "@/components/ui/home/GarmentsSection";
 import { contactDetails } from "@/lib/contact-details";
 import type { Metadata } from "next";
 
@@ -69,6 +70,7 @@ export default function Home() {
       <Hero />
       <Details />
       <Services />
+      <GarmentsSection />
       <InternationalShipping />
       <ShippingGuide />
       <YoutubeVideo />
