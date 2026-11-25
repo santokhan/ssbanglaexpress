@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Boxes, Search, Shirt, ShoppingBag, Truck } from "lucide-react";
+import { contactDetails } from "@/lib/contact-details";
 import courierImage from "@/assets/images/about-us.webp";
 import cargoImage from "@/assets/images/services-image.webp";
 import sourcingImage from "@/assets/images/services-section.webp";
@@ -81,6 +82,7 @@ export default function Services() {
               <h3 className="mt-7 text-xl font-bold text-slate-900">{business.name}</h3>
               <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{business.description}</p>
               <Link href="/quote" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#a51b40]">Talk to this team <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span></Link>
+              {business.name === "SSK Sourcing BD" && <a href={`${contactDetails.sourcing.whatsapp}?text=${encodeURIComponent("Hello SSK Sourcing BD, I am enquiring about ready-stock garments. Please share available products and minimum order quantities.")}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 w-fit items-center justify-center rounded-full border border-[#b81e46]/25 px-4 text-sm font-bold text-[#a51b40] transition hover:bg-rose-50">WhatsApp garment enquiries</a>}
               </div>
             </article>
           ))}
