@@ -6,6 +6,7 @@ import NavList from "./navbar/NavList";
 import Profile from "./Profile";
 import AuthProvider from "@/contexts/AuthProvider";
 import { contactDetails } from "@/lib/contact-details";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = ({
   className = "",
@@ -23,9 +24,12 @@ const Header = ({
         >
           <Logo className="h-9 w-auto sm:h-10" />
         </Link>
-        <AuthProvider>
-          <Profile />
-        </AuthProvider>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <LanguageSwitcher />
+          <AuthProvider>
+            <Profile />
+          </AuthProvider>
+        </div>
       </div>
     </header>
   );
